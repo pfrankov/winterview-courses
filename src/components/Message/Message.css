@@ -1,0 +1,7 @@
+.Message {
+  white-space: pre-wrap;
+}
+
+.MessageButton .MuiButton-label {
+  text-transform: none;
+}
