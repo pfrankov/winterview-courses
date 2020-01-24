@@ -2,11 +2,24 @@ import React, {useEffect} from 'react';
 import './App.css';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import {Container} from "@material-ui/core";
+import {Container, createStyles, Theme} from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import TextField from "@material-ui/core/TextField";
 import {Chat} from "../Chat/Chat";
 import Snackbar from "@material-ui/core/Snackbar";
+import {Viewer} from "../Viewer/Viewer";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+
+const useStyles = makeStyles((theme: Theme) => createStyles({
+    root: {
+        [theme.breakpoints.up('xs')]: {
+            position: 'static'
+        },
+        [theme.breakpoints.up('md')]: {
+            position: 'fixed',
+        },
+    },
+}));
 
 // FIXME: #ЯСДЕЛЯЛЬ #ИТАКСОЙДЁТ
 const App: React.FC = ({ selectedCourse }: any) => {
@@ -83,10 +96,12 @@ const App: React.FC = ({ selectedCourse }: any) => {
 
     }, [activeCourse]);
 
+    const classes = useStyles();
+
   return (
       <Container fixed>
-          <Grid container spacing={4}>
-              <Grid xs={6} item>
+          <Grid container spacing={2}>
+              <Grid xs={12} md={5} item>
                 <Chat selectedCourse={selectedCourse} messages={messages} onAction={(messageId: any, button: any) => {
                     selectedCourse.actions[button.action]({
                         argument: button.argument,
@@ -120,44 +135,54 @@ const App: React.FC = ({ selectedCourse }: any) => {
                       message={notification}
                   />
               </Grid>
-              <Grid item>
-                  <Box style={{position: 'fixed'}} m={1}>
+              <Grid item xs={12} md={7}>
+                  <Box className={classes.root} m={1}>
                       <Grid
                           container
-                          direction="column"
+                          spacing={2}
                       >
                           <Grid item>
-                              <Box m={1}>
-                                  <TextField
-                                      disabled
-                                      id="filled-disabled"
-                                      label="Текущий блок"
-                                      value={activeCourse.current.block}
-                                      variant="outlined"
-                                      fullWidth
-                                  />
-                              </Box>
+                              <Grid
+                                  container
+                                  direction="column"
+                              >
+                                  <Grid item>
+                                      <Box m={1}>
+                                          <TextField
+                                              disabled
+                                              id="filled-disabled"
+                                              label="Текущий блок"
+                                              value={activeCourse.current.block}
+                                              variant="outlined"
+                                              fullWidth
+                                          />
+                                      </Box>
+                                  </Grid>
+                                  <Grid item>
+                                      <Box m={1}>
+                                          <TextField
+                                              disabled
+                                              id="filled-disabled"
+                                              label="state"
+                                              value={JSON.stringify(activeCourse.state, null,'    ')}
+                                              rows="12"
+                                              variant="outlined"
+                                              multiline
+                                              fullWidth
+                                          />
+                                      </Box>
+                                  </Grid>
+                                  <Grid item>
+                                      <Box m={1}>
+                                          <Button onClick={() => nextDay()} fullWidth={true} variant="contained" color="primary">
+                                              Следующий день
+                                          </Button>
+                                      </Box>
+                                  </Grid>
+                              </Grid>
                           </Grid>
-                          <Grid item>
-                              <Box m={1}>
-                                  <TextField
-                                      disabled
-                                      id="filled-disabled"
-                                      label="state"
-                                      value={JSON.stringify(activeCourse.state, null,'    ')}
-                                      rows="12"
-                                      variant="outlined"
-                                      multiline
-                                      fullWidth
-                                  />
-                              </Box>
-                          </Grid>
-                          <Grid item>
-                              <Box m={1}>
-                                  <Button onClick={() => nextDay()} fullWidth={true} variant="contained" color="primary">
-                                      Следующий день
-                                  </Button>
-                              </Box>
+                          <Grid item xs={12} md={7}>
+                              <Viewer block={selectedCourse.blocks[activeCourse.current.block]} />
                           </Grid>
                       </Grid>
                   </Box>
