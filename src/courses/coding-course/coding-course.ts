@@ -206,7 +206,7 @@ export default {
             `<code>compress('aaabbc') // 'a3b2c1'</code>`,
             `<code>compress('aabbcca') // 'a2b2c2a1'</code>`,
             '',
-            'https://jsbin.com/niterudati/edit?js,console,output',
+            'https://jsbin.com/tomukofoxe/edit?js,console,output',
           ].join('\n'),
           buttons: getButtons('day6'),
         });
