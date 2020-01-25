@@ -91,7 +91,7 @@ exports.default = {
                         `<code>get({ a: { b: 1 } }, 'a.c') // undefined</code>`,
                         `<code>get({ }, 'a.c') // undefined</code>`,
                         '',
-                        `https://jsbin.com/wevotijida/edit?js,console,output`,
+                        `https://jsbin.com/maregabigi/edit?js,console,output`,
                     ].join('\n'),
                     buttons: getButtons('day1'),
                 });
