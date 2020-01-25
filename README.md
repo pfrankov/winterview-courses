@@ -24,3 +24,5 @@
 `yarn`  
 `yarn start`  
 Чтобы отлаживать не дефолтный, а ваш курс — измените путь до курса в `src/index.tsx`.  
+
+![](https://user-images.githubusercontent.com/584632/73128583-a284ea80-3fe2-11ea-9c6d-0ef29d8a71e3.gif)
