@@ -36,6 +36,12 @@ interface IEditMessageObject {
     /* Сообщение, которым нужно заменить то, на котором нажали кнопку */
     message?: string;
 }
+interface IForwardOptions {
+    /* Чат с сообщением */
+    fromChatId: string;
+    /* Сообщение, из чата `fromChatId` */
+    messageId: number;
+}
 
 interface IExecuteParams {
     /* Текущее пользовательское состояние */
@@ -45,6 +51,8 @@ interface IExecuteParams {
     transition(block: string): Promise<void>;
     /* Установить новое состояние. Внутри выполняется { ...oldState, ...state } */
     setState(state: IState): Promise<IState>;
+    /* Переслать сообщение из другого чата. Бот должен быть админом в чате */
+    forward(forwardOptions: IForwardOptions): Promise<void>;
 }
 
 interface IBlock {
