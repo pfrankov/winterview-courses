@@ -1,6 +1,6 @@
 {
-  "name": "winterview-courses-crp",
-  "version": "0.1.1",
+  "name": "winterview-courses",
+  "version": "0.1.2",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.8.3",
