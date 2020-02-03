@@ -17,7 +17,7 @@ function getButtons(argument) {
     ];
 }
 function getHeader(day) {
-    return `⭐️ <b>День ${day}</b>`;
+    return `👨‍🏫 <b>День ${day}</b>`;
 }
 exports.default = {
     id: 'codingCourse',
@@ -75,6 +75,7 @@ exports.default = {
                         `Вы выполнили ${Object.values(state.tasks).filter(x => x).length} из 7 задач`,
                         '',
                         `Повторяйте чаще, чтобы оставаться в тонусе.`,
+                        '<i><a href="https://t.me/winterview_contact_bot">Оставьте отзыв о курсе: что понравилось, а что нужно улучшить.</a></i>',
                     ].join('\n')
                 });
             }

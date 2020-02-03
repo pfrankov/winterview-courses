@@ -18,7 +18,7 @@ function getButtons (argument: string) {
 }
 
 function getHeader(day: string | number) {
-  return `⭐️ <b>День ${day}</b>`;
+  return `👨‍🏫 <b>День ${day}</b>`;
 }
 
 export default {
@@ -81,6 +81,7 @@ export default {
             `Вы выполнили ${Object.values(state.tasks).filter(x=>x).length} из 7 задач`,
             '',
             `Повторяйте чаще, чтобы оставаться в тонусе.`,
+            '<i><a href="https://t.me/winterview_contact_bot">Оставьте отзыв о курсе: что понравилось, а что нужно улучшить.</a></i>',
           ].join('\n')
         });
       }
