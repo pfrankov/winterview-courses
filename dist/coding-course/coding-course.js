@@ -1,5 +1,15 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const task1_js_1 = __importDefault(require("./answers/task1.js"));
+const task2_js_1 = __importDefault(require("./answers/task2.js"));
+const task3_js_1 = __importDefault(require("./answers/task3.js"));
+const task4_js_1 = __importDefault(require("./answers/task4.js"));
+const task5_js_1 = __importDefault(require("./answers/task5.js"));
+const task6_js_1 = __importDefault(require("./answers/task6.js"));
+const task7_js_1 = __importDefault(require("./answers/task7.js"));
 function getButtons(argument) {
     return [
         [
@@ -18,6 +28,50 @@ function getButtons(argument) {
 }
 function getHeader(day) {
     return `👨‍🏫 <b>День ${day}</b>`;
+}
+async function sendSolution({ argument, send }) {
+    if (!argument) {
+        return;
+    }
+    let message = [];
+    switch (argument) {
+        case 'task1': {
+            message = task1_js_1.default.split('\n');
+            break;
+        }
+        case 'task2': {
+            message = task2_js_1.default.split('\n');
+            break;
+        }
+        case 'task3': {
+            message = task3_js_1.default.split('\n');
+            break;
+        }
+        case 'task4': {
+            message = task4_js_1.default.split('\n');
+            break;
+        }
+        case 'task5': {
+            message = task5_js_1.default.split('\n');
+            break;
+        }
+        case 'task6': {
+            message = task6_js_1.default.split('\n');
+            break;
+        }
+        case 'task7': {
+            message = task7_js_1.default.split('\n');
+            break;
+        }
+    }
+    if (message.length) {
+        await send({
+            message: [
+                'Решение:',
+                message.map((x) => `<code>${x}</code>`).join('\n'),
+            ].join('\n'),
+        });
+    }
 }
 exports.default = {
     id: 'codingCourse',
@@ -45,7 +99,7 @@ exports.default = {
     blocks: {
         start: {
             execute: async ({ state, setState, transition }) => {
-                const allTasks = ['day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7'];
+                const allTasks = ['task1', 'task2', 'task3', 'task4', 'task5', 'task6', 'task7'];
                 const restTasks = allTasks.filter(task => state.tasks[task] == null);
                 if (restTasks.length <= 0) {
                     await transition('end');
@@ -53,7 +107,7 @@ exports.default = {
                 else {
                     let nextTask = restTasks[Math.floor(Math.random() * restTasks.length)];
                     if (!Object.keys(state.tasks).length) {
-                        nextTask = 'day1';
+                        nextTask = 'task1';
                     }
                     await setState({
                         tasks: Object.assign({}, state.tasks, {
@@ -80,7 +134,7 @@ exports.default = {
                 });
             }
         },
-        day1: {
+        task1: {
             execute: async ({ state, send, transition }) => {
                 await send({
                     message: [
@@ -94,12 +148,12 @@ exports.default = {
                         '',
                         `https://jsbin.com/maregabigi/edit?js,console,output`,
                     ].join('\n'),
-                    buttons: getButtons('day1'),
+                    buttons: getButtons('task1'),
                 });
                 await transition('start');
             },
         },
-        day2: {
+        task2: {
             wait: true,
             execute: async ({ state, send, transition }) => {
                 await send({
@@ -113,12 +167,12 @@ exports.default = {
                         '',
                         `https://jsbin.com/zemucivogu/edit?js,console,output`,
                     ].join('\n'),
-                    buttons: getButtons('day2'),
+                    buttons: getButtons('task2'),
                 });
                 await transition('start');
             },
         },
-        day3: {
+        task3: {
             wait: true,
             execute: async ({ state, send, transition }) => {
                 await send({
@@ -133,12 +187,12 @@ exports.default = {
                         '',
                         `https://jsbin.com/dedixiluzu/edit?js,console,output`,
                     ].join('\n'),
-                    buttons: getButtons('day3'),
+                    buttons: getButtons('task3'),
                 });
                 await transition('start');
             },
         },
-        day4: {
+        task4: {
             wait: true,
             execute: async ({ state, send, transition }) => {
                 await send({
@@ -154,12 +208,12 @@ exports.default = {
                         '',
                         'https://jsbin.com/getubeqoke/edit?js,console,output',
                     ].join('\n'),
-                    buttons: getButtons('day4'),
+                    buttons: getButtons('task4'),
                 });
                 await transition('start');
             },
         },
-        day5: {
+        task5: {
             wait: true,
             execute: async ({ state, send, transition }) => {
                 await send({
@@ -174,12 +228,12 @@ exports.default = {
                         '',
                         'https://jsbin.com/bexaciveke/edit?js,console,output',
                     ].join('\n'),
-                    buttons: getButtons('day5'),
+                    buttons: getButtons('task5'),
                 });
                 await transition('start');
             },
         },
-        day6: {
+        task6: {
             wait: true,
             execute: async ({ state, send, transition }) => {
                 await send({
@@ -193,12 +247,12 @@ exports.default = {
                         '',
                         'https://jsbin.com/tomukofoxe/edit?js,console,output',
                     ].join('\n'),
-                    buttons: getButtons('day6'),
+                    buttons: getButtons('task6'),
                 });
                 await transition('start');
             },
         },
-        day7: {
+        task7: {
             wait: true,
             execute: async ({ state, send, transition }) => {
                 await send({
@@ -213,17 +267,19 @@ exports.default = {
                         '',
                         'https://jsbin.com/kavonezazi/edit?js,console,output',
                     ].join('\n'),
-                    buttons: getButtons('day7'),
+                    buttons: getButtons('task7'),
                 });
                 await transition('start');
             },
         },
     },
     actions: {
-        done: async ({ argument, state, setState, edit, transition, notify }) => {
+        done: async ({ argument, state, setState, edit, transition, notify, send }) => {
             if (!argument) {
                 return;
             }
+            const taskNumber = parseInt(argument.replace(/^.*?([0-9]+)/i, '$1'));
+            argument = `task${taskNumber}`;
             notify(`Отлично!`);
             await setState({
                 tasks: Object.assign(Object.assign({}, state.tasks), { [argument]: true })
@@ -231,15 +287,19 @@ exports.default = {
             await edit({
                 buttons: []
             });
+            await sendSolution({ argument, send });
         },
-        failed: async ({ argument, state, setState, edit, transition, notify }) => {
+        failed: async ({ argument, state, setState, edit, transition, notify, send }) => {
             if (!argument) {
                 return;
             }
+            const taskNumber = parseInt(argument.replace(/^.*?([0-9]+)/i, '$1'));
+            argument = `task${taskNumber}`;
             notify(`Очень жаль!`);
             await edit({
                 buttons: []
             });
+            await sendSolution({ argument, send });
         }
     }
 };

@@ -47,13 +47,6 @@ const App: React.FC = ({ selectedCourse }: any) => {
                 return data;
             },
             send: async (messageObject: any) => {
-                setActiveCourse({
-                    ...activeCourse,
-                    current: {
-                        ...activeCourse.current,
-                        isSent: true
-                    },
-                });
                 // send
                 setMessages([
                     ...messages,
@@ -76,10 +69,17 @@ const App: React.FC = ({ selectedCourse }: any) => {
     }
 
     async function nextDay () {
-        if (selectedCourse.blocks[activeCourse.current.block].final && activeCourse.current.isSent) {
+        if (selectedCourse.blocks[activeCourse.current.block].final && activeCourse.current.isExecuted) {
             return;
         }
 
+        setActiveCourse({
+            ...activeCourse,
+            current: {
+                ...activeCourse.current,
+                isExecuted: true
+            },
+        });
         await selectedCourse.blocks[activeCourse.current.block].execute(makeCourseParams());
     }
 
