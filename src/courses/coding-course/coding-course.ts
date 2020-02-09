@@ -70,7 +70,7 @@ async function sendSolution({argument, send}: any) {
         await send({
             message: [
                 'Решение:',
-                message.map((x: string) => `<code>${x}</code>`).join('\n'),
+                message.map((x: string) => `<code>${x.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')}</code>`).join('\n'),
             ].join('\n'),
         });
     }

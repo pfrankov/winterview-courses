@@ -68,7 +68,7 @@ async function sendSolution({ argument, send }) {
         await send({
             message: [
                 'Решение:',
-                message.map((x) => `<code>${x}</code>`).join('\n'),
+                message.map((x) => `<code>${x.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')}</code>`).join('\n'),
             ].join('\n'),
         });
     }
