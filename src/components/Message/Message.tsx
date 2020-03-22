@@ -6,15 +6,17 @@ import Card from "@material-ui/core/Card";
 import React from "react";
 import './Message.css';
 import Grid from "@material-ui/core/Grid";
+import CardMedia from "@material-ui/core/CardMedia";
 
 type MessageProps = {
     message?: any;
     buttons?: any;
     onAction?: any;
+    image?: any;
     messageId?: any;
 }
 
-export const Message: React.FC<MessageProps> = ({ messageId, message, buttons, onAction }) => {
+export const Message: React.FC<MessageProps> = ({ messageId, message, buttons, image, onAction }) => {
 
     function convertButtons(buttonsFromCourse: any) {
         function replaceAllButtons(btns: any) {
@@ -61,6 +63,14 @@ export const Message: React.FC<MessageProps> = ({ messageId, message, buttons, o
 
     return (
         <Card variant="outlined">
+            {
+                image && (
+                    <CardMedia
+                        component="img"
+                        image={`//localhost:8080/${process.env.REACT_APP_COURSE}/${image}`}
+                    />
+                )
+            }
             <CardContent>
                 <Typography
                     variant="body2"

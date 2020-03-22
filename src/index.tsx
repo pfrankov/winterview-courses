@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App';
 
-// Курс
-import codingCourse from './courses/coding-course/coding-course';
+const course = require(`./courses/${process.env.REACT_APP_COURSE}/${process.env.REACT_APP_COURSE}`).default;
 
-// Курс менять здесь
 // @ts-ignore
-ReactDOM.render(<App selectedCourse={codingCourse} />, document.getElementById('root'));
+ReactDOM.render(<App selectedCourse={course} />, document.getElementById('root'));

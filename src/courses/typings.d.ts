@@ -30,6 +30,13 @@ export interface IMessageObject {
     buttons?: Buttons[];
     message: string;
 }
+
+export interface IImageObject {
+    buttons?: Buttons[];
+    message?: string;
+    image: string;
+}
+
 interface IEditMessageObject {
     /* Набор кнопок, которыми нужно заменить кнопки сообщения, на котором нажали кнопку */
     buttons?: Buttons[];
@@ -46,7 +53,7 @@ interface IForwardOptions {
 interface IExecuteParams {
     /* Текущее пользовательское состояние */
     state: IState;
-    send(messageObject: IMessageObject): Promise<void>;
+    send(messageObject: IMessageObject | IImageObject): Promise<void>;
     /* Переход на другой блок. Блоки сами не переходят между собой. Нужно явно указать, какой блок запустить дальше. Переход происходит сразу. Исполнение блока может быть отсрочено */
     transition(block: string): Promise<void>;
     /* Установить новое состояние. Внутри выполняется { ...oldState, ...state } */
@@ -60,6 +67,8 @@ interface IBlock {
     wait?: string | true,
     /* Завершить курс после выполнения этого блока */
     final?: boolean;
+    /* Блок доступен только для Патронов */
+    paywall?: boolean;
     /* Метод исполнения блока */
     execute(params: IExecuteParams): Promise<void>,
 }

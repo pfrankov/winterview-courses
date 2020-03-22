@@ -69,7 +69,7 @@ const App: React.FC = ({ selectedCourse }: any) => {
     }
 
     async function nextDay () {
-        if (selectedCourse.blocks[activeCourse.current.block].final && activeCourse.current.isExecuted) {
+        if (selectedCourse.blocks[activeCourse.current.block].final || activeCourse.current.isExecuted) {
             return;
         }
 

@@ -14,7 +14,13 @@ export const Chat = ({ messages, onAction, selectedCourse }: any) => {
                     {
                         messages.map((messageObject: any, index: number) => (
                             <Box key={index} mb={3}>
-                                <Message messageId={messageObject.id} message={messageObject.message} buttons={messageObject.buttons} onAction={onAction}/>
+                                <Message
+                                    messageId={messageObject.id}
+                                    message={messageObject.message}
+                                    buttons={messageObject.buttons}
+                                    onAction={onAction}
+                                    image={messageObject.image}
+                                />
                             </Box>
                         ))
                     }
