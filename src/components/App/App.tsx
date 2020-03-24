@@ -37,6 +37,7 @@ const App: React.FC = ({ selectedCourse }: any) => {
 
     function makeCourseParams() {
         return {
+            isPatron: async () => (window as any).isPatron,
             state: activeCourse.state,
             setState: async (newState: any) => {
                 const data = Object.assign({}, activeCourse.state, newState);

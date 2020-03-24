@@ -60,6 +60,8 @@ interface IExecuteParams {
     setState(state: IState): Promise<IState>;
     /* Переслать сообщение из другого чата. Бот должен быть админом в чате */
     forward(forwardOptions: IForwardOptions): Promise<void>;
+    /* Является ли пользователь Патроном */
+    isPatron(): Promise<boolean>;
 }
 
 interface IBlock {
