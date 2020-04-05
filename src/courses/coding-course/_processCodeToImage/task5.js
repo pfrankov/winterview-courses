@@ -1,5 +1,4 @@
-module.exports =
-    `function isPalindrome (str) {
+function isPalindrome (str) {
   if (str.length < 1) {
     return true;
   }
@@ -13,4 +12,4 @@ module.exports =
     }
   }
   return true
-}`;
+}

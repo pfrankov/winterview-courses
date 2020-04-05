@@ -1,5 +1,4 @@
-module.exports =
-    `function check (brackets) {
+function check (brackets) {
   let stack = [];
   for (let i = 0; i < s.length; i++) {
     switch(brackets.charAt(i)) {
@@ -14,9 +13,9 @@ module.exports =
         break;
       default:
         if (stack.pop() !== brackets.charAt(i)) {
-           return false;
+          return false;
         }
     }
   }
   return stack.length === 0
-}`;
+}

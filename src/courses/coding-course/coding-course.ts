@@ -1,11 +1,5 @@
 import {ICourse} from "../typings";
-import answerTask1 from "./answers/task1.js";
-import answerTask2 from "./answers/task2.js";
-import answerTask3 from "./answers/task3.js";
-import answerTask4 from "./answers/task4.js";
-import answerTask5 from "./answers/task5.js";
-import answerTask6 from "./answers/task6.js";
-import answerTask7 from "./answers/task7.js";
+
 
 function getButtons(argument: string) {
     return [
@@ -33,47 +27,10 @@ async function sendSolution({argument, send}: any) {
         return;
     }
 
-    let message: any = [];
-
-    switch (argument) {
-        case 'task1': {
-            message = answerTask1.split('\n');
-            break;
-        }
-        case 'task2': {
-            message = answerTask2.split('\n');
-            break;
-        }
-        case 'task3': {
-            message = answerTask3.split('\n');
-            break;
-        }
-        case 'task4': {
-            message = answerTask4.split('\n');
-            break;
-        }
-        case 'task5': {
-            message = answerTask5.split('\n');
-            break;
-        }
-        case 'task6': {
-            message = answerTask6.split('\n');
-            break;
-        }
-        case 'task7': {
-            message = answerTask7.split('\n');
-            break;
-        }
-    }
-
-    if (message.length) {
-        await send({
-            message: [
-                'Решение:',
-                message.map((x: string) => `<code>${x.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')}</code>`).join('\n'),
-            ].join('\n'),
-        });
-    }
+    await send({
+        message: 'Возможное решение',
+        image: `codeImages/${argument}.png`,
+    });
 }
 
 export default {

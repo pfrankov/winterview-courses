@@ -1,5 +1,4 @@
-module.exports =
-`function compress (string) {
+function compress (string) {
   let result = "";
   let sum = 1;
   for (let i = 0; i < string.length; i ++) {
@@ -11,4 +10,4 @@ module.exports =
     }
   }
   return result;
-}`;
+}

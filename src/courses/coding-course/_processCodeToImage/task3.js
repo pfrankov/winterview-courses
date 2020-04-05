@@ -1,5 +1,4 @@
-module.exports =
-`function flat (array) {
+function flat (array) {
   const output = [...array];
   let index = 0;
   while (index < output.length) {
@@ -11,4 +10,4 @@ module.exports =
     }
   }
   return output;
-}`;
+}
