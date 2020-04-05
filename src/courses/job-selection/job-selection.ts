@@ -1,5 +1,109 @@
 import { ICourse } from "../typings";
 
+interface CourseState {
+  task11: boolean,
+  task21: boolean,
+  task22: boolean,
+  task23: boolean,
+  task31: boolean,
+  task32: boolean,
+  task41: boolean,
+  task51: boolean,
+  task52: boolean,
+  task53: boolean,
+  task61: boolean,
+  task62: boolean,
+  task63: boolean,
+  task71: boolean,
+  task72: boolean,
+  task73: boolean
+
+  totalValue: number,
+  totalMaxValue: number
+}
+
+const cheers = ['Молодец!', 'Так держать!', 'Отлично!', 'Класс!', 'Превосходно!', 'Круто!'];
+
+function getResultText(completedPercentage: number): string {
+  if (completedPercentage > 1 || completedPercentage < 0) {
+    return ''
+  }
+
+  if (completedPercentage === 1) {
+    return 'Вы выполнили все задания курса. Так держать!\n' +
+      'С таким подходом, я уверен, у вас все получилось и вы нашли (или очень скоро найдете) работу своей мечты.'
+  }
+
+  if (completedPercentage === 0) {
+    return 'Вы не выполнили ни одного задания из курса.\n' +
+      'Теория — это всегда хорошо, но без применения информации на практике, она бесполезна.\n' +
+      'Рекомендую вам пройти курс заново, выполняя задания.'
+  }
+
+  if (completedPercentage > 0.5) {
+    return 'Вы выполнили большую часть заданий из курса.\n' +
+      'Я верю, что эта информация поможет вам найти работу мечты.'
+  }
+
+  if (completedPercentage < 0.5) {
+    return 'Вы выполнили некоторые задания курса.\n' +
+      'Надеюсь эта информация была для вас полезна.\n' +
+      'Для более глубокой проработки рекомендую проийти этот курс еще раз.'
+  }
+
+  return 'Вы выполнили половину заданий курса.\n' +
+    'Надеюсь это информация поможет вам найти работу мечты.'
+}
+
+function getAdditionalRecommendations(result: CourseState): string {
+  const recommendations: string[] = [];
+
+  if (!result.task11) {
+    recommendations.push(
+      'Модуль с определением ваших желаний один из самых важных в этом курсе.\n' +
+      'Уделите время и поразмышляйте над предложеными там вопросами.'
+    )
+  }
+
+  if (!result.task21 && !result.task22) {
+    recommendations.push(
+      'Крайне рекомендую создать профиль в деловых социальных сетях, а так же указать, над чем вы хотите работать.\n' +
+      'Это гораздо увеличит вероятность найти подходящую вам работу.'
+    )
+  }
+
+  if (!result.task41) {
+    recommendations.push(
+      'Не стоит надеятся на свою память при выборе вакансий.\n' +
+      'Лучше запишите хотя бы какой-то минимум информации которую вы получили от представителей компании.\n' +
+      'Поверьте, в будущем вы скажете себе "Спасибо".'
+    )
+  }
+
+  if (!result.task52 && !result.task62) {
+    recommendations.push(
+      'Лучше все-таки составить список вопросов для рекрутера и технического специалиста.\n' +
+      'Без такого списка вы обязательно забудите спросить что-то очень важное.'
+    )
+  }
+
+  if (recommendations.length === 0) {
+    return '';
+  }
+
+  return '\nДополнительные рекомендации:\n\n' + recommendations.join('\n\n') + '\n'
+}
+
+function getButtons(tasks: string[]) {
+  return tasks.map((task, index) => {
+    return {
+      action: 'done',
+      argument: task,
+      text: `Выполнил ${index + 1}`
+    }
+  })
+}
+
 export default {
   id: 'jobSelection',
   name: 'Поиск работы мечты',
@@ -19,7 +123,27 @@ export default {
       'В конце каждого модуля есть список рекомендованных действий, которые помогут вам применить описанный материал.',
     ].join('\n');
   },
-  state: {},
+  state: {
+    task11: false,
+    task21: false,
+    task22: false,
+    task23: false,
+    task31: false,
+    task32: false,
+    task41: false,
+    task51: false,
+    task52: false,
+    task53: false,
+    task61: false,
+    task62: false,
+    task63: false,
+    task71: false,
+    task72: false,
+    task73: false,
+
+    totalValue: 0,
+    totalMaxValue: 16
+  },
   initial: 'day1',
   blocks: {
     day1: {
@@ -60,6 +184,7 @@ export default {
             '<b>Рекомендуемые действия:</b>',
             '1. Определите, чего вы хотите исходя их тех советов, что предложено'
           ].join('\n'),
+          buttons: getButtons(['task11']),
         });
 
         await transition('day2');
@@ -111,6 +236,7 @@ export default {
             '2. Укажите то, что вы ищете в своем резюме',
             '3. Выберите стратегию для поиска',
           ].join('\n'),
+          buttons: getButtons(['task21', 'task22', 'task23']),
         });
 
         await transition('day3');
@@ -155,6 +281,7 @@ export default {
             '1. Определите для себя те критерии, которые для вас критически важны',
             '2. Начните отбирать вакансии исходя из этих критериев',
           ].join('\n'),
+          buttons: getButtons(['task31', 'task32']),
         });
 
         await transition('day4');
@@ -203,6 +330,7 @@ export default {
             '<b>Рекомендуемые действия:</b>',
             '1. Зафиксируйте информацию об отобранных вакансиях',
           ].join('\n'),
+          buttons: getButtons(['task41']),
         });
 
         await transition('day5');
@@ -239,6 +367,7 @@ export default {
             '2. Составьте список вопросов для заполнения пробелов и задайте их',
             '3. Дополните профили компаний',
           ].join('\n'),
+          buttons: getButtons(['task51', 'task52', 'task53']),
         });
 
         await transition('day6');
@@ -282,6 +411,7 @@ export default {
             '2. Составьте список вопросов для технического специалиста и задайте их',
             '3. Зафиксируйте полученную информацию',
           ].join('\n'),
+          buttons: getButtons(['task61', 'task62', 'task63']),
         });
 
         await transition('day7');
@@ -315,6 +445,7 @@ export default {
             '2. Внесите их в сводную таблицу',
             '3. Выберите работу мечты!',
           ].join('\n'),
+          buttons: getButtons(['task71', 'task72', 'task73']),
         });
 
         await transition('end');
@@ -322,22 +453,55 @@ export default {
     },
 
     end: {
-      final: true,
       wait: true,
-      execute: async ({send}) => {
+      execute: async ({state, send, transition}) => {
         await send({
           message: [
             '<b>Курс по поиску работы мечты завершен.</b>',
             '',
-            'Очень надеюсь, что данные советы помогли вам найти то, что вы ищите.',
-            'Спасибо, что уделил ваше время!',
+            getResultText(state.totalValue / state.totalMaxValue),
+            getAdditionalRecommendations(state as CourseState),
+            'Спасибо, что уделили ваше время!',
             '',
-            '<i>Если вы хотите связаться с автором курса, можете использовать email <a href="mailto:fukarim94@gmail.com">fukarim94@gmail.com</a></i>',
+            '<i>Контакты автора курсы: @fukarim</i>',
+          ].join('\n'),
+        });
+        await transition('end2');
+      }
+    },
+
+    end2: {
+      final: true,
+      wait: true,
+      execute: async ({state, send}) => {
+        await send({
+          message: [
+            '<b>Курс по поиску работы мечты завершен.</b>',
+            '',
+            getResultText(state.totalValue / state.totalValueMax),
+            '',
+            getAdditionalRecommendations(state as CourseState),
+            'Спасибо, что уделили ваше время!',
+            '',
+            '<i>Контакты автора курсы: @fukarim</i>',
           ].join('\n'),
         });
       }
     },
 
   },
-  actions: {}
+  actions: {
+    done: async ({argument, state, setState, notify}) => {
+      if (!argument || state[argument]) {
+        return;
+      }
+
+      notify(cheers[Math.floor(Math.random() * cheers.length)]);
+
+      await setState({
+        [argument]: true,
+        totalValue: state.totalValue + 1
+      });
+    },
+  }
 } as ICourse
