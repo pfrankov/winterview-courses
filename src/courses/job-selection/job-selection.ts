@@ -1,4 +1,4 @@
-import { ICourse } from "../typings";
+import {IButton, ICourse} from "../typings";
 
 interface CourseState {
   task11: boolean,
@@ -23,6 +23,21 @@ interface CourseState {
 }
 
 const cheers = ['Молодец!', 'Так держать!', 'Отлично!', 'Класс!', 'Превосходно!', 'Круто!'];
+
+function getDayTasksByTaskId(taskId: string): string[] {
+  const match = taskId.match(/task(\d)/);
+
+  if (!match || !match[1]) {
+    return []
+  }
+
+  const day = match[1] as unknown as number;
+
+  const taskByDay = [[], ['task11'], ['task21', 'task22', 'task23'] , ['task31', 'task32'], ['task41'],
+    ['task51', 'task52', 'task53'], ['task61', 'task62', 'task63'], ['task71', 'task72', 'task73']];
+
+  return taskByDay[day] || []
+}
 
 function getResultText(completedPercentage: number): string {
   if (completedPercentage > 1 || completedPercentage < 0) {
@@ -472,12 +487,24 @@ export default {
 
   },
   actions: {
-    done: async ({argument, state, setState, notify}) => {
+    done: async ({argument, state, setState, notify, edit}) => {
       if (!argument || state[argument]) {
         return;
       }
 
       await notify(cheers[Math.floor(Math.random() * cheers.length)]);
+
+      await edit({
+        buttons: getDayTasksByTaskId(argument).map((t, index) => {
+          if (!state[t] && t !== argument) {
+            return {
+              action: 'done',
+              argument: t,
+              text: `Выполнил ${index + 1}`
+            }
+          }
+        }).filter(Boolean) as IButton[],
+      });
 
       await setState({
         [argument]: true,
