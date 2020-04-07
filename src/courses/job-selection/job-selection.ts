@@ -27,8 +27,6 @@ const cheers = ['Молодец!', 'Так держать!', 'Отлично!', 
 function getDayTasksByTaskId(taskId: string): string[] {
   const match = taskId.match(/task(\d)/);
 
-  console.log(match)
-
   if (!match || !match[1]) {
     return []
   }
