@@ -175,7 +175,6 @@ module.exports = {
   "question": [
    {
     "message": require('./tasks/html/task-13.js')(),
-    "image": "codeImages/code-13.png"
    }
   ],
   "answer": "D",
@@ -189,7 +188,6 @@ module.exports = {
   "question": [
    {
     "message": require('./tasks/html/task-14.js')(),
-    "image": "codeImages/code-14.png"
    }
   ],
   "answer": "B",
@@ -357,7 +355,6 @@ module.exports = {
   "question": [
    {
     "message": require('./tasks/html/task-26.js')(),
-    "image": "codeImages/code-26.png"
    }
   ],
   "answer": "A",
@@ -539,7 +536,6 @@ module.exports = {
   "question": [
    {
     "message": require('./tasks/html/task-39.js')(),
-    "image": "codeImages/code-39.png"
    }
   ],
   "answer": "A",
