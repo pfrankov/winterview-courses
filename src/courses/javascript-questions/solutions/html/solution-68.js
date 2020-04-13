@@ -1,0 +1,2 @@
+module.exports = () => `Каждый <code>Symbol</code> совершенно уникален. Цель аргумента, переданного <code>Symbol</code>, состоит в том, чтобы дать <code>Symbol</code> описание. Значение <code>Symbol</code> не зависит от переданного аргумента. Когда мы проверяем равенство, мы создаем два совершенно новых <code>Symbol</code>: первый <code>Symbol('foo')</code> и второй <code>Symbol('foo')</code>. Эти два значения уникальны и не равны друг другу, <code>Symbol('foo') === Symbol('foo')</code> возвращает <code>false</code>.
+`;

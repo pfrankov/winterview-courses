@@ -1,0 +1,4 @@
+module.exports = () => `Унарный оператор <code>++</code> <i>first возвращает</i> значение операнда, <i>then приращивает</i> значение операнда. Значение <code>num1</code> равно <code>10</code>, так как функция увеличений вначале возвращает значение <code>num</code>, которое равно <code>10</code>, и только затем увеличивает значение <code>num</code>.
+
+<code>num2</code> - это <code>10</code>, так как мы передали <code>num1</code> в <code>incpasePassedNumber</code>. <code>number</code> равно <code>10</code> (значение <code>num1</code>. Опять же, унарный оператор <code>++</code> <i>first возвращает</i> значение операнда, \_then увеличивает значение операнда. Значение <code>number</code> равно <code>10</code>, поэтому <code>num2</code> равно <code>10</code>.
+`;

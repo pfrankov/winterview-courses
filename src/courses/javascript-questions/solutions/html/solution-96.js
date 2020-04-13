@@ -1,0 +1,2 @@
+module.exports = () => `Мы можем установить классы равными другим классам/конструкторам функций. В этом случае мы устанавливаем <code>Person</code> равным <code>AnotherPerson</code>. Свойство <code>name</code> этого конструктора - <code>Sarah</code>, поэтому свойство <code>name</code> для нового экземпляра класса <code>Person</code> <code>member</code> - это <code>Sarah</code>.
+`;

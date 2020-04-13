@@ -1,0 +1,1 @@
+Обычные функции, такие как функция `giveLydiaPizza`, имеют свойство `prototype`, которое является объектом (прототипом объекта) со свойством `constructor`. Однако функции со стрелками, такие как функция `giveLydiaChocolate`, не имеют этого свойства `prototype`. `undefined` возвращается при попытке доступа к свойству `prototype` с использованием `giveLydiaChocolate.prototype`.

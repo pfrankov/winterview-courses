@@ -49,13 +49,23 @@ const App: React.FC = ({ selectedCourse }: any) => {
             },
             send: async (messageObject: any) => {
                 // send
+                messages.push({
+                    ...messageObject,
+                    id: `${Date.now()}${Math.round(Math.random() * 99999999)}`,
+                });
+
                 setMessages([
                     ...messages,
-                    {
-                        ...messageObject,
-                        id: `${Date.now()}${Math.round(Math.random() * 99999999)}`,
-                    },
                 ]);
+
+                // // send
+                // messages.push({
+                //     ...messageObject,
+                //     id: `${Date.now()}${Math.round(Math.random() * 99999999)}`,
+                // });
+                // setMessages([
+                //     ...messages,
+                // ])
             },
             transition: async (block: any) => {
                 setActiveCourse((prevState:any) => ({
@@ -70,10 +80,11 @@ const App: React.FC = ({ selectedCourse }: any) => {
     }
 
     async function nextDay () {
-        if (selectedCourse.blocks[activeCourse.current.block].final || activeCourse.current.isExecuted) {
+        if (activeCourse.current.isExecuted) {
             return;
         }
 
+        activeCourse.current.isExecuted = true;
         setActiveCourse({
             ...activeCourse,
             current: {

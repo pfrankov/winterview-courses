@@ -2,25 +2,19 @@ const { execSync } = require("child_process");
 const glob = require("glob");
 
 const path = require("path");
+const fs = require("fs");
 
-// options is optional
-glob.sync("src/**/_processCodeToImage/*").forEach((filePath) => {
-  console.log(filePath);
-  execSync(`yarn run carbon-now ${filePath} --config carbon-config.json -t ${path.basename(filePath, path.extname(filePath))} -l ${path.join(path.dirname(filePath), '..', 'codeImages')} -h`);
-});
-
-/*
-for (let i=0; i < 3; i++) {
-  exec("ls -la", (error, stdout, stderr) => {
-    if (error) {
-      console.log(`error: ${error.message}`);
-      return;
-    }
-    if (stderr) {
-      console.log(`stderr: ${stderr}`);
-      return;
-    }
-    console.log(`stdout: ${stdout}`);
-  })
+const args = process.argv.slice(2);
+const course = args[0];
+if (!course) {
+  throw new Error('No course specified');
 }
-*/
+
+glob.sync(`src/courses/${course}/**/_processCodeToImage/*`).forEach((filePath) => {
+  console.log(filePath);
+  const directory = path.join(path.dirname(filePath), '..', 'codeImages');
+  fs.mkdir(directory, { recursive: true }, (err) => {
+    if (err) throw err;
+  });
+  execSync(`yarn run carbon-now ${path.resolve(filePath)} --config carbon-config.json -t ${path.basename(filePath, path.extname(filePath))} -l ${directory} -h`);
+});

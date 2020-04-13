@@ -1,0 +1,4 @@
+module.exports = () => `С ключевым словом <code>import</code> все импортируемые модули являются <i>pre-parsed</i>. Это означает, что импортированные модули запускаются <i>первыми</i>, код в файле, который импортирует модуль, исполняется <i>после</i>.
+
+В этом разница между <code>require()</code> в CommonJS и <code>import</code>! С помощью <code>require()</code> вы можете загружать зависимости по требованию во время выполнения кода. Если бы мы использовали <code>require</code> вместо <code>import</code>, в консоль были бы записаны <code>running index.js</code>, <code>running sum.js</code>, <code>3</code>.
+`;

@@ -1,0 +1,2 @@
+module.exports = () => `Обычные функции, такие как функция <code>giveLydiaPizza</code>, имеют свойство <code>prototype</code>, которое является объектом (прототипом объекта) со свойством <code>constructor</code>. Однако функции со стрелками, такие как функция <code>giveLydiaChocolate</code>, не имеют этого свойства <code>prototype</code>. <code>undefined</code> возвращается при попытке доступа к свойству <code>prototype</code> с использованием <code>giveLydiaChocolate.prototype</code>.
+`;
