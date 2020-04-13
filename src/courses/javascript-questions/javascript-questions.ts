@@ -210,7 +210,7 @@ export default {
         }
     },
     actions: {
-        answer: async ({ state, setState, send, edit, transition, argument, notify }) => {
+        answer: async ({ state, setState, send, edit, transition, argument, notify, isPatron }) => {
             if (!argument) {
                 return;
             }
@@ -272,21 +272,35 @@ export default {
             }
 
             if (state.freeSolutions === 1) {
-                await send({
-                    message: [
-                        '🟨 <b>Это было последнее решение на этой неделе.</b>',
-                        '',
-                        '🎟 <b>Подписчикам на Патреоне доступны решения для всех задач</b>',
-                    ].join('\n'),
-                    buttons: [
-                        [
-                            {
-                                text: '🎟 Пустите, я патрон!',
-                                action: 'promotePatreon',
-                            },
+                const isActivePatron = await isPatron();
+
+                if (isActivePatron) {
+                    await setState({
+                        freeSolutions: TOTAL_TASKS,
+                    });
+                } else {
+                    await send({
+                        message: [
+                            '🟨 <b>Это было последнее решение на этой неделе.</b>',
+                            '',
+                            '🎟 <b>Подписчикам на Патреоне доступны решения для всех задач</b>',
+                            '',
+                            '‼️ <i>Если нажать на кнопку с 🎟 — курс будет ждать вашей авторизации ИЛИ отмены курса.</i>',
+                        ].join('\n'),
+                        buttons: [
+                            [
+                                {
+                                    text: '🎟 Пустите, я патрон!',
+                                    action: 'promotePatreon',
+                                },
+                                {
+                                    text: 'Продолжить курс',
+                                    action: 'continueCourse',
+                                },
+                            ]
                         ]
-                    ]
-                });
+                    })
+                }
             }
 
             await transition('nextTask');
@@ -327,7 +341,16 @@ export default {
             await transition('nextTask');
         },
         promotePatreon: async ({setState, argument, transition, edit}) => {
+            await edit({
+               buttons: [],
+            });
             await transition('promotePatreon');
+        },
+        continueCourse: async ({setState, argument, transition, edit}) => {
+            await edit({
+                buttons: [],
+            });
+            await transition('nextTask');
         },
         noop: async ({notify}) => {
             const reasons = ['Ставки сделаны. Ставок больше нет', 'Здесь не на что смотреть', 'Выбор нельзя отменить', '👍 Лайк за настойчивость'];
