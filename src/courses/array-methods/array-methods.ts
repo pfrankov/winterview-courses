@@ -41,30 +41,25 @@ async function sendLinks({ argument, send }: any) {
     message: [
       `<b>Дополнительные ссылки на методы (MDN)</b>`,
       '',
-      `<b>1. Метод ${newLinksListArray[0].shift()}()</b> - <i><a href=${
+      `<b>1. Метод ${newLinksListArray[0].shift()}()</b> - <a href="${
         newLinksListArray[0]
-      }
-      }>Ссылка</a></i>`,
+      }">Ссылка</a>`,
       '',
-      `<b>2. Метод ${newLinksListArray[1].shift()}()</b> - <i><a href=${
+      `<b>2. Метод ${newLinksListArray[1].shift()}()</b> - <a href="${
         newLinksListArray[1]
-      }
-      }>Ссылка</a></i>`,
+      }">Ссылка</a>`,
       '',
-      `<b>3. Метод ${newLinksListArray[2].shift()}()</b> - <i><a href=${
+      `<b>3. Метод ${newLinksListArray[2].shift()}()</b> - <a href="${
         newLinksListArray[2]
-      }
-      }>Ссылка</a></i>`,
+      }">Ссылка</a>`,
       '',
-      `<b>4. Метод ${newLinksListArray[3].shift()}()</b> - <i><a href=${
+      `<b>4. Метод ${newLinksListArray[3].shift()}()</b> - <a href="${
         newLinksListArray[3]
-      }
-      }>Ссылка</a></i>`,
+      }">Ссылка</a>`,
       '',
-      `<b>4. Метод ${newLinksListArray[4].shift()}()</b> - <i><a href=${
+      `<b>4. Метод ${newLinksListArray[4].shift()}()</b> - <a href="${
         newLinksListArray[4]
-      }
-      }>Ссылка</a></i>`
+      }">Ссылка</a>`
     ].join('\n')
   });
 }
@@ -160,6 +155,7 @@ export default {
       }
     },
     end: {
+      wait: true,
       final: true,
       execute: async ({ send }) => {
         await send({
