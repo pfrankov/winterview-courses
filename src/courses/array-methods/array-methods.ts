@@ -1,17 +1,19 @@
 import { ICourse } from '../typings';
 import { linksList } from './_links/methodsLinks';
+import { taskList } from './_tasks/methodsTasks';
 
-function getButtons(argument: string) {
+function getButtons(argument: string[]) {
   return [
     [
       {
         action: 'sendMethodsLinks',
-        argument: argument,
-        text: '😎 Ссылки на MDN'
+        argument: argument[0],
+        text: '😎 Ссылки на MDN!'
       },
       {
-        action: 'done',
-        text: '✅ Все понятно!'
+        action: 'sendTask',
+        argument: argument[1],
+        text: '✅ Отправить задание!'
       }
     ]
   ];
@@ -67,6 +69,29 @@ async function sendLinks({ argument, send }: any) {
   });
 }
 
+async function sendTask({ argument, send }: any) {
+  if (!argument) {
+    return;
+  }
+  let newTasksArray: any = [];
+
+  Object.keys(taskList).map(function(key) {
+    if (key === argument) {
+      let x = taskList[key];
+      newTasksArray = Object.entries(x);
+    }
+  });
+  await send({
+    message: [
+      `💻 <b>Проверочное задание №${newTasksArray[0].shift()}</b>`,
+      '',
+      `${newTasksArray[0]}`,
+      '',
+      `Пока что это задание для самостоятельного выполнения, вы можете просто скопировать код и посмотреть что выведется в консоль, а затем проверить себя: понимаете ли вы почему так, или нет`
+    ].join('\n')
+  });
+}
+
 export default {
   id: 'arrayMethodsCourse',
   name: 'Изучение JS методов массива',
@@ -80,11 +105,15 @@ export default {
       'Пройдите этот небольшой курс и выучите все методы массива в JavaScript',
       '',
       'На протяжении 6 дней Вам будут приходить по 5 методов с описанием и примерами кода, так что вы можете их повторить самостоятельно.',
-      ''
+      '',
+      'После прочтения Вы можете запросить у бота доп. ссылки на MDN про прочитанные методы или взять тестовое задание для самостоятельного выполняния',
+      '',
+      'В дальнейшем, задания можно будет выполнять напрямую в боте в виде теста'
     ].join('\n');
   },
   state: {
-    methods: {}
+    methods: {},
+    tasks: {}
   },
   initial: 'start',
   blocks: {
@@ -99,23 +128,30 @@ export default {
           'methods6'
         ];
 
+        const allTasks = ['task1', 'task2', 'task3', 'task4', 'task5', 'task6'];
+
         const restMethods = allMethods.filter(
           method => state.methods[method] == null
         );
+        const restTasks = allTasks.filter(task => state.tasks[task] == null);
 
         if (restMethods.length <= 0) {
           await transition('end');
         } else {
-          let nextMethods =
-            restMethods[Math.floor(Math.random() * restMethods.length)];
+          let nextMethods = restMethods[0];
+          let nextTasks = restTasks[0];
 
           if (!Object.keys(state.methods).length) {
             nextMethods = 'methods1';
+            nextTasks = 'task1';
           }
 
           await setState({
             methods: Object.assign({}, state.methods, {
               [nextMethods]: false
+            }),
+            tasks: Object.assign({}, state.tasks, {
+              [nextTasks]: false
             })
           });
 
@@ -131,7 +167,8 @@ export default {
             `🔥 <b>Поздравляем! Вы выучили 30 JS методов массива</b>`,
             `Попробуйте постоянно использовать их, чтобы оставаться в тонусе.`,
             'Удачного кодинга!',
-            '<i><a href="https://t.me/winterview_contact_bot">Оставьте отзыв о курсе: что понравилось, а что нужно улучшить.</a></i>'
+            '<i><a href="https://t.me/winterview_contact_bot">Оставьте отзыв о курсе: что понравилось, а что нужно улучшить.</a></i>',
+            'Контакты автора курса @dalvelab'
           ].join('\n')
         });
       }
@@ -155,7 +192,7 @@ export default {
             '<b>5. lastIndexOf()</b> - то же самое что и indexOf, но двигается с конца массива и находит ближайший индекс значения с конца'
           ].join('\n'),
           image: `codeImages/methods1.png`,
-          buttons: getButtons('methods1')
+          buttons: getButtons(['methods1', 'task1'])
         });
 
         await transition('start');
@@ -181,7 +218,7 @@ export default {
             `<b>5. reverse()</b> - возвращает массив с «развернутыми» значениями`
           ].join('\n'),
           image: `codeImages/methods2.png`,
-          buttons: getButtons('methods2')
+          buttons: getButtons(['methods2', 'task2'])
         });
         await transition('start');
       }
@@ -206,7 +243,7 @@ export default {
             `<b>5. join()</b> - возвращает строку, разделяя элементы массива символом, введенным внутри метода`
           ].join('\n'),
           image: `codeImages/methods3.png`,
-          buttons: getButtons('methods3')
+          buttons: getButtons(['methods3', 'task3'])
         });
 
         await transition('start');
@@ -232,7 +269,7 @@ export default {
             `<b>5. unshift()</b> - добавляет новый элемент в начало массива и возвращает новую длину массива`
           ].join('\n'),
           image: `codeImages/methods4.png`,
-          buttons: getButtons('methods4')
+          buttons: getButtons(['methods4', 'task4'])
         });
 
         await transition('start');
@@ -258,7 +295,7 @@ export default {
             `<b>5. some()</b> - проверяет, есть ли хоть одно значение, которое удовлетворяет функции внутри метода`
           ].join('\n'),
           image: `codeImages/methods5.png`,
-          buttons: getButtons('methods5')
+          buttons: getButtons(['methods5', 'task5'])
         });
 
         await transition('start');
@@ -284,19 +321,7 @@ export default {
             `<b>5. valueOf()</b> - возвращает значение массива`
           ].join('\n'),
           image: `codeImages/methods6.png`,
-          buttons: getButtons('methods6')
-        });
-
-        await transition('start');
-      }
-    },
-    links1: {
-      execute: async ({ state, send, transition }) => {
-        await send({
-          message: [
-            getHeader(Object.keys(state.methods).length, 'Ссылки на MDN'),
-            'Тестим отправочку'
-          ].join('\n')
+          buttons: getButtons(['methods6', 'task6'])
         });
 
         await transition('start');
@@ -305,12 +330,28 @@ export default {
   },
 
   actions: {
-    done: async ({ notify, edit }) => {
-      await notify(`Отлично! До завтра!`);
+    sendTask: async ({ notify, state, setState, send, argument }) => {
+      if (!argument) {
+        return;
+      }
+      const motivateTasks = [
+        'Отлично!😉 А теперь попробуйте ответить на вопрос!',
+        'Замечательно!😃 Уверен Вам не составит труда ответить на этот вопрос',
+        'Вы очень быстро схватываете!🧤 Как насчет небольшого вопроса?'
+      ];
 
-      await edit({
-        buttons: []
-      });
+      await notify(
+        motivateTasks[Math.floor(Math.random() * motivateTasks.length)]
+      );
+
+      // await setState({
+      //   tasks: {
+      //     ...state.tasks,
+      //     [argument]: true
+      //   }
+      // });
+
+      await sendTask({ argument, send });
     },
     sendMethodsLinks: async ({
       argument,
@@ -324,6 +365,8 @@ export default {
         return;
       }
 
+      const motivateLinks = [];
+
       await notify(`Продолжайте изучение!`);
 
       await setState({
@@ -331,10 +374,6 @@ export default {
           ...state.methods,
           [argument]: true
         }
-      });
-
-      await edit({
-        buttons: []
       });
 
       await sendLinks({ argument, send });
