@@ -123,11 +123,11 @@ export default {
                             }
                         ]] : []
                     });
-
-                    await setState({
-                        tasksSent: tasksSent + 1,
-                    });
                 }));
+
+                await setState({
+                    tasksSent: tasksSent + 1,
+                });
             }
         },
 
