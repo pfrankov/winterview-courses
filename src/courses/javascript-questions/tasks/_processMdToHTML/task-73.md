@@ -1,6 +1,6 @@
 ###### Какой будет вывод?
 
 -   A: `"I made it!"`
--   B: `Promise {<resolved>: "I made it!"}`
--   C: `Promise {<pending>}`
+-   B: `Promise {&lt;resolved&gt;: "I made it!"}`
+-   C: `Promise {&lt;pending&gt;}`
 -   D: `undefined`

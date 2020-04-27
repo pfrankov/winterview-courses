@@ -1,6 +1,6 @@
 ###### Какой будет вывод?
 
 -   A: `Hello world!`
--   B: `Hello` <br />     `world`
+-   B: `Hello` \n     `world`
 -   C: `Hello\nworld`
--   D: `Hello\n` <br />      `world`
+-   D: `Hello\n` \n      `world`

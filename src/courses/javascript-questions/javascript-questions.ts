@@ -15,7 +15,7 @@ const TOTAL_DAYS = 7;
 export default {
     id: 'javascriptQuestions',
     name: '🎟 Вопросы по JavaScript',
-    active: false,
+    active: true,
     description: () => {
         return [
             '🟨 <b>Вопросы по JavaScript</b>',
@@ -69,12 +69,12 @@ export default {
                             action: 'selectNumberOfQuestions'
                         },
                         {
-                            text: '3 вопроса — 21 за неделю',
+                            text: '🎟 3 вопроса — 21 за неделю',
                             argument: 'THREE',
                             action: 'selectNumberOfQuestions'
                         },
                         {
-                            text: '5 вопросов — 35 за неделю',
+                            text: '🎟 5 вопросов — 35 за неделю',
                             argument: 'FIVE',
                             action: 'selectNumberOfQuestions'
                         }
@@ -123,11 +123,11 @@ export default {
                             }
                         ]] : []
                     });
-
-                    await setState({
-                        tasksSent: tasksSent + 1,
-                    });
                 }));
+
+                await setState({
+                    tasksSent: tasksSent + 1,
+                });
             }
         },
 
