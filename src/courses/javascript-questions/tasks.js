@@ -20,6 +20,7 @@ module.exports = {
     "image": "codeImages/code-2.png"
    }
   ],
+  "options": 3,
   "answer": "C",
   "solution": [
    {
@@ -48,6 +49,7 @@ module.exports = {
     "image": "codeImages/code-4.png"
    }
   ],
+  "options": 3,
   "answer": "A",
   "solution": [
    {
@@ -76,6 +78,7 @@ module.exports = {
     "image": "codeImages/code-6.png"
    }
   ],
+  "options": 5,
   "answer": "A",
   "solution": [
    {
@@ -118,6 +121,7 @@ module.exports = {
     "image": "codeImages/code-9.png"
    }
   ],
+  "options": 3,
   "answer": "A",
   "solution": [
    {
@@ -190,6 +194,7 @@ module.exports = {
     "message": require('./tasks/html/task-14.js')(),
    }
   ],
+  "options": 2,
   "answer": "B",
   "solution": [
    {
@@ -232,6 +237,7 @@ module.exports = {
     "image": "codeImages/code-17.png"
    }
   ],
+  "options": 3,
   "answer": "B",
   "solution": [
    {
@@ -246,6 +252,7 @@ module.exports = {
     "image": "codeImages/code-18.png"
    }
   ],
+  "options": 3,
   "answer": "C",
   "solution": [
    {
@@ -357,6 +364,7 @@ module.exports = {
     "message": require('./tasks/html/task-26.js')(),
    }
   ],
+  "options": 3,
   "answer": "A",
   "solution": [
    {
@@ -1091,6 +1099,7 @@ module.exports = {
     "image": "codeImages/code-77.png"
    }
   ],
+  "options": 2,
   "answer": "A",
   "solution": [
    {
@@ -1523,6 +1532,7 @@ module.exports = {
     "image": "codeImages/code-107.png"
    }
   ],
+  "options": 2,
   "answer": "A",
   "solution": [
    {

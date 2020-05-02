@@ -102,31 +102,20 @@ export default {
                 const taskKey = Object.keys(state.tasks)[(state.day - 1) * state.tasksPerDay + tasksSent];
 
                 await Promise.all(tasks[taskKey].question.map(async (mes: any, index: number, messages: any[]) => {
+                    const header = index === 0 ? getHeader(state.day, tasksSent + 1, state.tasksPerDay) : '';
+
                     await send({
-                        message: [getHeader(state.day, tasksSent + 1, state.tasksPerDay), mes.message].join('\n'),
+                        message: [header, mes.message].filter(x=>x).join('\n'),
                         image: mes.image || undefined,
-                        buttons: messages.length - 1 === index ? [[
-                            {
-                                action: 'answer',
-                                argument: `${taskKey}-A`,
-                                text: 'A'
-                            },
-                            {
-                                action: 'answer',
-                                argument: `${taskKey}-B`,
-                                text: 'B'
-                            },
-                            {
-                                action: 'answer',
-                                argument: `${taskKey}-C`,
-                                text: 'C'
-                            },
-                            {
-                                action: 'answer',
-                                argument: `${taskKey}-D`,
-                                text: 'D'
-                            }
-                        ]] : []
+                        buttons: messages.length - 1 === index ? [
+                            ['A', 'B', 'C', 'D', 'E'].slice(0, tasks[taskKey].options || 4).map((char) => {
+                                return {
+                                    action: 'answer',
+                                    argument: `${taskKey}-${char}`,
+                                    text: char,
+                                }
+                            })
+                        ] : []
                     });
                 }));
 
@@ -220,7 +209,7 @@ export default {
                 return;
             }
 
-            const matches = argument.match(/^task(\d+)-([ABCD])$/);
+            const matches = argument.match(/^task(\d+)-([ABCDE])$/);
             if (!matches) {
                 return;
             }
@@ -228,28 +217,26 @@ export default {
             const taskNum = matches[1];
             const answer = matches[2];
 
-            const isCorrect = tasks[`task${taskNum}`].answer === answer;
+            const task = tasks[`task${taskNum}`];
+            const isCorrect = task.answer === answer;
 
             await edit({
                buttons: [
-                   [
-                       ...['A', 'B', 'C', 'D'].map((char) => {
-                           //let text = (answer === char || tasks[`task${taskNum}`].answer === char) ? (isCorrect ?  : char) : ' ';
-                           let text = ' ';
+                   ['A', 'B', 'C', 'D', 'E'].slice(0, task.options || 4).map((char) => {
+                       let text = ' ';
 
-                           if ((answer === char && isCorrect) || tasks[`task${taskNum}`].answer === char) {
-                               text = '✅ ' + char;
-                           } else if (answer === char) {
-                               text = '❌ ' + char;
-                           }
+                       if ((answer === char && isCorrect) || task.answer === char) {
+                           text = '✅ ' + char;
+                       } else if (answer === char) {
+                           text = '❌ ' + char;
+                       }
 
-                           return {
-                               action: 'noop',
-                               text,
-                           }
-                       })
+                       return {
+                           action: 'noop',
+                           text,
+                       }
+                   })
 
-                   ]
                ],
             });
 
