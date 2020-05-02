@@ -35,6 +35,7 @@ export default {
         tasksSent: 0,
         tasks: {},
         day: 1,
+        isInvitedToPatreon: false,
     },
     initial: 'start',
     blocks: {
@@ -49,6 +50,7 @@ export default {
                 });
                 await setState({
                     freeSolutions: TOTAL_TASKS,
+                    isInvitedToPatreon: false,
                 });
                 await transition('nextTask');
             }
@@ -91,6 +93,9 @@ export default {
                         return transition('end');
                     }
 
+                    if (state.isInvitedToPatreon) {
+                        return transition('promotePatreon');
+                    }
                     return transition('newDay');
                 }
 
@@ -321,6 +326,13 @@ export default {
                 return;
             }
 
+            // @ts-ignore
+            const freeSolutions = {
+                'ONE': 8,
+                'THREE': 9,
+                'FIVE': 10,
+            }[argument];
+
             await edit({
                 buttons: [],
             });
@@ -336,6 +348,7 @@ export default {
                 }, {}),
 
                 tasksPerDay: selected,
+                freeSolutions,
             });
 
             await transition('nextTask');
@@ -343,6 +356,9 @@ export default {
         promotePatreon: async ({setState, argument, transition, edit}) => {
             await edit({
                buttons: [],
+            });
+            await setState({
+                isInvitedToPatreon: true,
             });
             await transition('promotePatreon');
         },
