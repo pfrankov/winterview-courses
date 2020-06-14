@@ -1,11 +1,9 @@
 import {ICourse} from "../typings";
 
 const getTaskHeader = (day: number) => {
-  const courseDays = 7;
-
-  return day === 0 ? 
-  `<b>Структуры данных. Курс закончился</b>\n`:
-  `<b>Структуры данных. День ${day}</b>\n`;
+  return day === -1 ? 
+    `<b>Структуры данных. Курс закончился</b>\n`:
+    `<b>Структуры данных. День ${day}</b>\n`;
 };
 
 export default {
@@ -18,6 +16,7 @@ export default {
     ].join('\n');
   },
   state: {
+    day: 0,
     answers: []
   },
   initial: 'day1',
@@ -28,7 +27,7 @@ export default {
       execute: async ({ state, send }) => {
         await send({
           message: [
-            getTaskHeader(0),
+            getTaskHeader(-1),
           ].join('\n')
         });
       }
@@ -310,7 +309,10 @@ export default {
         message: 'Ты не прав. Ща поясню'
       });
 
-      // await setState({});
+      console.log(state); 
+      await setState({
+        day: state.day + 1
+      });
     }
   }
 } as ICourse;
