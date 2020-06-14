@@ -390,7 +390,6 @@ export default {
     checkAnswer: async ({ setState, state, edit, argument, send }) => {
       const answer = getAnswer(state.day, argument);
       console.log(state.answers);
-      console.log(answer.isCorrect);
 
       await edit({
         buttons: []
@@ -402,7 +401,7 @@ export default {
 
       await setState({ 
         day: state.day + 1,
-        answers: state.answers.push(answer.isCorrect)
+        answers: [...state.answers, answer.isCorrect]
       });
 
     }
