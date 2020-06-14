@@ -1,5 +1,13 @@
 import {ICourse} from "../typings";
 
+const getTaskHeader = (day: number) => {
+  const courseDays = 7;
+
+  return day === 0 ? 
+  `<b>Структуры данных. Курс закончился</b>\n`:
+  `<b>Структуры данных. День ${day}</b>\n`;
+};
+
 export default {
   id: 'empty',
   name: 'Структуры данных',
@@ -20,7 +28,7 @@ export default {
       execute: async ({ state, send }) => {
         await send({
           message: [
-            '<b>Курс такой-то. Конец</b>',
+            getTaskHeader(0),
           ].join('\n')
         });
       }
@@ -29,7 +37,8 @@ export default {
       execute: async ({transition, send}) => {
         await send({
           message: [
-            '<b>Курс. День 1</b>',
+            getTaskHeader(1),
+            'Какой-нибудь вопрос'
           ].join('\n'),
           buttons: [
             [
@@ -66,7 +75,8 @@ export default {
       execute: async ({transition, setState, send}) => {
         await send({
           message: [
-            '<b>Курс. День 2</b>',
+            getTaskHeader(2),
+            'Какой-нибудь вопрос',
           ].join('\n'),
           buttons: [
             [
@@ -103,7 +113,8 @@ export default {
       execute: async ({transition, setState, send}) => {
         await send({
           message: [
-            '<b>Курс. День 3</b>',
+            getTaskHeader(3),
+            'Какой-нибудь вопрос',
           ].join('\n'),
           buttons: [
             [
@@ -140,7 +151,8 @@ export default {
       execute: async ({transition, setState, send}) => {
         await send({
           message: [
-            '<b>Курс. День 4</b>',
+            getTaskHeader(4),
+            'Какой-нибудь вопрос',
           ].join('\n'),
           buttons: [
             [
@@ -177,7 +189,8 @@ export default {
       execute: async ({transition, setState, send}) => {
         await send({
           message: [
-            '<b>Курс. День 5</b>',
+            getTaskHeader(5),
+            'Какой-нибудь вопрос',
           ].join('\n'),
           buttons: [
             [
@@ -214,7 +227,8 @@ export default {
       execute: async ({transition, setState, send}) => {
         await send({
           message: [
-            '<b>Курс. День 6</b>',
+            getTaskHeader(6),
+            'Какой-нибудь вопрос',
           ].join('\n'),
           buttons: [
             [
@@ -251,7 +265,8 @@ export default {
       execute: async ({transition, setState, send}) => {
         await send({
           message: [
-            '<b>Курс. День 7</b>',
+            getTaskHeader(7),
+            'Какой-нибудь вопрос',
           ].join('\n'),
           buttons: [
             [
