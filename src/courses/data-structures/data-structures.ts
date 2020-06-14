@@ -200,29 +200,29 @@ export default {
         await send({
           message: [
             getTaskHeader(3),
-            'Какой-нибудь вопрос',
+            'Какой метод массива подойдёт для получения последних добавленных элементов, если мы используем массив, как стек?',
           ].join('\n'),
           buttons: [
             [
               {
-                text: 'Правильный ответ',
+                text:'pop',
                 action: 'checkAnswer',
                 argument: '1'
               },
               {
-                text: '2',
+                text: 'push',
                 action: 'checkAnswer',
                 argument: '0'
               }
             ],
             [
               {
-                text: '3',
+                text: 'shift',
                 action: 'checkAnswer',
                 argument: '0'
               },
               {
-                text: '4',
+                text: 'не знаю',
                 action: 'checkAnswer',
                 argument: '0'
               }
