@@ -9,7 +9,7 @@ const getTaskHeader = (day: number) => {
 export default {
   id: 'empty',
   name: 'Структуры данных',
-  active: false, // Не забудьте сменить на true
+  active: true, // Не забудьте сменить на true
   description: () => {
     return [
       '<b>Описание курса</b>',
