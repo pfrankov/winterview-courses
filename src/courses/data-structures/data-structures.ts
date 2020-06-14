@@ -29,8 +29,30 @@ export default {
       execute: async ({transition, send}) => {
         await send({
           message: [
-            '<b>Курс такой-то. День 1</b>',
-          ].join('\n')
+            '<b>Курс. День 1</b>',
+          ].join('\n'),
+          buttons: [
+            [
+              {
+                text: '1',
+                action: ''
+              },
+              {
+                text: '2',
+                action: ''
+              }
+            ],
+            [
+              {
+                text: '3',
+                action: ''
+              },
+              {
+                text: '4',
+                action: ''
+              }
+            ]
+          ]
         });
         await transition('day2');
       },
