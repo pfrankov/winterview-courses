@@ -10,7 +10,7 @@ export default {
     ].join('\n');
   },
   state: {
-
+    answers: []
   },
   initial: 'day1',
   blocks: {
@@ -35,21 +35,21 @@ export default {
             [
               {
                 text: '1',
-                action: ''
+                action: 'checkAnswer'
               },
               {
                 text: '2',
-                action: ''
+                action: 'checkAnswer'
               }
             ],
             [
               {
                 text: '3',
-                action: ''
+                action: 'checkAnswer'
               },
               {
                 text: '4',
-                action: ''
+                action: 'checkAnswer'
               }
             ]
           ]
@@ -114,6 +114,12 @@ export default {
   },
 
   actions: {
+    checkAnswer: async ({ setState, state, edit }) => {
+      await edit({
+        buttons: []
+      });
 
+      // await setState({});
+    }
   }
 } as ICourse;
