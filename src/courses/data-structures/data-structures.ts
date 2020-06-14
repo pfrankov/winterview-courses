@@ -34,22 +34,26 @@ export default {
           buttons: [
             [
               {
-                text: '1',
-                action: 'checkAnswer'
+                text: 'Правильный ответ',
+                action: 'checkAnswer',
+                argument: '1'
               },
               {
                 text: '2',
-                action: 'checkAnswer'
+                action: 'checkAnswer',
+                argument: '0'
               }
             ],
             [
               {
                 text: '3',
-                action: 'checkAnswer'
+                action: 'checkAnswer',
+                argument: '0'
               },
               {
                 text: '4',
-                action: 'checkAnswer'
+                action: 'checkAnswer',
+                argument: '0'
               }
             ]
           ]
@@ -59,54 +63,222 @@ export default {
     },
     day2: {
       wait: true,
-      execute: async ({transition, setState}) => {
-        await setState({
-          value: 1,
+      execute: async ({transition, setState, send}) => {
+        await send({
+          message: [
+            '<b>Курс. День 2</b>',
+          ].join('\n'),
+          buttons: [
+            [
+              {
+                text: 'Правильный ответ',
+                action: 'checkAnswer',
+                argument: '1'
+              },
+              {
+                text: '2',
+                action: 'checkAnswer',
+                argument: '0'
+              }
+            ],
+            [
+              {
+                text: '3',
+                action: 'checkAnswer',
+                argument: '0'
+              },
+              {
+                text: '4',
+                action: 'checkAnswer',
+                argument: '0'
+              }
+            ]
+          ]
         });
         await transition('day3');
       },
     },
     day3: {
       wait: true,
-      execute: async ({transition, setState}) => {
-        await setState({
-          value: 1,
+      execute: async ({transition, setState, send}) => {
+        await send({
+          message: [
+            '<b>Курс. День 3</b>',
+          ].join('\n'),
+          buttons: [
+            [
+              {
+                text: 'Правильный ответ',
+                action: 'checkAnswer',
+                argument: '1'
+              },
+              {
+                text: '2',
+                action: 'checkAnswer',
+                argument: '0'
+              }
+            ],
+            [
+              {
+                text: '3',
+                action: 'checkAnswer',
+                argument: '0'
+              },
+              {
+                text: '4',
+                action: 'checkAnswer',
+                argument: '0'
+              }
+            ]
+          ]
         });
         await transition('day4');
       },
     },
     day4: {
       wait: true,
-      execute: async ({transition, setState}) => {
-        await setState({
-          value: 1,
+      execute: async ({transition, setState, send}) => {
+        await send({
+          message: [
+            '<b>Курс. День 4</b>',
+          ].join('\n'),
+          buttons: [
+            [
+              {
+                text: 'Правильный ответ',
+                action: 'checkAnswer',
+                argument: '1'
+              },
+              {
+                text: '2',
+                action: 'checkAnswer',
+                argument: '0'
+              }
+            ],
+            [
+              {
+                text: '3',
+                action: 'checkAnswer',
+                argument: '0'
+              },
+              {
+                text: '4',
+                action: 'checkAnswer',
+                argument: '0'
+              }
+            ]
+          ]
         });
         await transition('day5');
       },
     },
     day5: {
       wait: true,
-      execute: async ({transition, setState}) => {
-        await setState({
-          value: 1,
+      execute: async ({transition, setState, send}) => {
+        await send({
+          message: [
+            '<b>Курс. День 5</b>',
+          ].join('\n'),
+          buttons: [
+            [
+              {
+                text: 'Правильный ответ',
+                action: 'checkAnswer',
+                argument: '1'
+              },
+              {
+                text: '2',
+                action: 'checkAnswer',
+                argument: '0'
+              }
+            ],
+            [
+              {
+                text: '3',
+                action: 'checkAnswer',
+                argument: '0'
+              },
+              {
+                text: '4',
+                action: 'checkAnswer',
+                argument: '0'
+              }
+            ]
+          ]
         });
         await transition('day6');
       },
     },
     day6: {
       wait: true,
-      execute: async ({transition, setState}) => {
-        await setState({
-          value: 1,
+      execute: async ({transition, setState, send}) => {
+        await send({
+          message: [
+            '<b>Курс. День 6</b>',
+          ].join('\n'),
+          buttons: [
+            [
+              {
+                text: 'Правильный ответ',
+                action: 'checkAnswer',
+                argument: '1'
+              },
+              {
+                text: '2',
+                action: 'checkAnswer',
+                argument: '0'
+              }
+            ],
+            [
+              {
+                text: '3',
+                action: 'checkAnswer',
+                argument: '0'
+              },
+              {
+                text: '4',
+                action: 'checkAnswer',
+                argument: '0'
+              }
+            ]
+          ]
         });
         await transition('day7');
       },
     },
     day7: {
       wait: true,
-      execute: async ({transition, setState}) => {
-        await setState({
-          value: 1,
+      execute: async ({transition, setState, send}) => {
+        await send({
+          message: [
+            '<b>Курс. День 7</b>',
+          ].join('\n'),
+          buttons: [
+            [
+              {
+                text: 'Правильный ответ',
+                action: 'checkAnswer',
+                argument: '1'
+              },
+              {
+                text: '2',
+                action: 'checkAnswer',
+                argument: '0'
+              }
+            ],
+            [
+              {
+                text: '3',
+                action: 'checkAnswer',
+                argument: '0'
+              },
+              {
+                text: '4',
+                action: 'checkAnswer',
+                argument: '0'
+              }
+            ]
+          ]
         });
         await transition('end');
       },
@@ -114,9 +286,13 @@ export default {
   },
 
   actions: {
-    checkAnswer: async ({ setState, state, edit }) => {
+    checkAnswer: async ({ setState, state, edit, argument, send }) => {
       await edit({
         buttons: []
+      });
+
+      await send({
+        message: 'Ты не прав. Ща поясню'
       });
 
       // await setState({});
