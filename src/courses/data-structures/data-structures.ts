@@ -389,7 +389,6 @@ export default {
   actions: {
     checkAnswer: async ({ setState, state, edit, argument, send }) => {
       const answer = getAnswer(state.day, argument);
-      console.log(state.answers);
 
       await edit({
         buttons: []
