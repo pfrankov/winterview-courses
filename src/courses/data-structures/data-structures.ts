@@ -105,6 +105,63 @@ const answers: {[index: string]:any} = {
       isCorrect: 'false',
       text: ``
     }
+  ],
+
+  '5': [
+    {
+      isCorrect: 'false',
+      text: ``
+    },
+    {
+      isCorrect: 'false',
+      text: ``
+    },
+    {
+      isCorrect: 'false',
+      text: ``
+    },
+    {
+      isCorrect: 'true',
+      text: ``
+    }
+  ],
+
+  '6': [
+    {
+      isCorrect: 'false',
+      text: ``
+    },
+    {
+      isCorrect: 'false',
+      text: ``
+    },
+    {
+      isCorrect: 'true',
+      text: ``
+    },
+    {
+      isCorrect: 'false',
+      text: ``
+    }
+  ],
+
+  '7': [
+    {
+      isCorrect: 'false',
+      text: ``
+    },
+    {
+      isCorrect: 'false',
+      text: ``
+    },
+    {
+      isCorrect: 'true',
+      text: ``
+    },
+    {
+      isCorrect: 'false',
+      text: ``
+    }
   ]
 };
 
