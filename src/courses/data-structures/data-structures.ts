@@ -1,5 +1,4 @@
 import {ICourse} from "../typings";
-import { number } from "prop-types";
 
 const getTaskHeader = (day: number) => {
   return day === -1 ? 
