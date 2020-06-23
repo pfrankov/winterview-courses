@@ -338,24 +338,24 @@ ____ вызовов — механизм, который помогает инт
           buttons: [
             [
               {
-                text: 'Правильный ответ',
+                text: 'pop',
                 action: 'checkAnswer',
                 argument: '0'
               },
               {
-                text: '2',
+                text: 'unshift',
                 action: 'checkAnswer',
                 argument: '1'
               }
             ],
             [
               {
-                text: '3',
+                text: 'push',
                 action: 'checkAnswer',
                 argument: '2'
               },
               {
-                text: '4',
+                text: 'не знаю',
                 action: 'checkAnswer',
                 argument: '3'
               }
