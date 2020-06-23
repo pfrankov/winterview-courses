@@ -371,31 +371,31 @@ ____ вызовов — механизм, который помогает инт
         await send({
           message: [
             getTaskHeader(7),
-            'Какой-нибудь вопрос',
+            'Какой метод подойдёт для получения старых добавленных элементов, если мы используем массив, как очередь?',
           ].join('\n'),
           buttons: [
             [
               {
-                text: 'Правильный ответ',
-                action: 'checkAnswer',
-                argument: '1'
-              },
-              {
-                text: '2',
+                text: 'pop',
                 action: 'checkAnswer',
                 argument: '0'
+              },
+              {
+                text: 'push',
+                action: 'checkAnswer',
+                argument: '1'
               }
             ],
             [
               {
-                text: '3',
+                text: 'shift',
                 action: 'checkAnswer',
-                argument: '0'
+                argument: '2'
               },
               {
-                text: '4',
+                text: 'не знаю',
                 action: 'checkAnswer',
-                argument: '0'
+                argument: '3'
               }
             ]
           ]
