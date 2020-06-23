@@ -238,29 +238,31 @@ export default {
         await send({
           message: [
             getTaskHeader(4),
-            'Какой-нибудь вопрос',
+            `Какое слово пропущено в тексте?
+
+____ вызовов — механизм, который помогает интерпретатору отслеживать текущее выполнение кода и хранить контексты выполнения всех функций из скрипта.`,
           ].join('\n'),
           buttons: [
             [
               {
-                text: 'Правильный ответ',
-                action: 'checkAnswer',
-                argument: '1'
-              },
-              {
-                text: '2',
+                text: 'Очередь',
                 action: 'checkAnswer',
                 argument: '0'
+              },
+              {
+                text: 'Стек',
+                action: 'checkAnswer',
+                argument: '1'
               }
             ],
             [
               {
-                text: '3',
+                text: 'Переадресация',
                 action: 'checkAnswer',
                 argument: '0'
               },
               {
-                text: '4',
+                text: 'Не знаю',
                 action: 'checkAnswer',
                 argument: '0'
               }
