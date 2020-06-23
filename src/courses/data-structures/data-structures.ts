@@ -224,24 +224,24 @@ export default {
               {
                 text:'pop',
                 action: 'checkAnswer',
-                argument: '1'
+                argument: '0'
               },
               {
                 text: 'push',
                 action: 'checkAnswer',
-                argument: '0'
+                argument: '1'
               }
             ],
             [
               {
                 text: 'shift',
                 action: 'checkAnswer',
-                argument: '0'
+                argument: '2'
               },
               {
                 text: 'не знаю',
                 action: 'checkAnswer',
-                argument: '0'
+                argument: '3'
               }
             ]
           ]
@@ -276,12 +276,12 @@ ____ вызовов — механизм, который помогает инт
               {
                 text: 'Переадресация',
                 action: 'checkAnswer',
-                argument: '0'
+                argument: '2'
               },
               {
                 text: 'Не знаю',
                 action: 'checkAnswer',
-                argument: '0'
+                argument: '3'
               }
             ]
           ]
@@ -307,19 +307,19 @@ ____ вызовов — механизм, который помогает инт
               {
                 text: 'Не знаю',
                 action: 'checkAnswer',
-                argument: '0'
+                argument: '1'
               }
             ],
             [
               {
                 text: 'Хеш-таблица',
                 action: 'checkAnswer',
-                argument: '0'
+                argument: '2'
               },
               {
                 text: 'Очередь',
                 action: 'checkAnswer',
-                argument: '1'
+                argument: '3'
               }
             ]
           ]
@@ -333,7 +333,7 @@ ____ вызовов — механизм, который помогает инт
         await send({
           message: [
             getTaskHeader(6),
-            'Какой-нибудь вопрос',
+            'Как и со стеками, в JavaScript нет специальной структуры для очередей. Для их реализации можно использовать массивы. Какой метод подойдёт для записи новых элементов?',
           ].join('\n'),
           buttons: [
             [
