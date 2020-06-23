@@ -86,8 +86,26 @@ const answers: {[index: string]:any} = {
       isCorrect: false,
       text: `Ничего! Помните, стек работает по принципу «последний пришёл, первый вышел»? Новые элементы записываются в конец стека, в нашем случае массива. Поэтому и получать последние добавленные элементы надо из конца массива. Для этого подходит метод <code>pop</code> — он удаляет последний элемент массива и возвращает его значение.`
     }
-  ]
+  ],
 
+  '4': [
+    {
+      isCorrect: 'false',
+      text: ``
+    },
+    {
+      isCorrect: 'true',
+      text: ``
+    },
+    {
+      isCorrect: 'false',
+      text: ``
+    },
+    {
+      isCorrect: 'false',
+      text: ``
+    }
+  ]
 };
 
 const getAnswer = (day: string, answerId: string | undefined = '') => answers[day][answerId];
@@ -277,31 +295,31 @@ ____ вызовов — механизм, который помогает инт
         await send({
           message: [
             getTaskHeader(5),
-            'Какой-нибудь вопрос',
+            'Представьте, что вы пишите приложение для интерактивного обучения игре на синтезаторе. Пользователь может выбрать мелодию и посмотреть, как она играется, нота за нотой, нужные клавиши будут подсвечиваться на экране. Какую структуру данных вы выберете для хранения нот?',
           ].join('\n'),
           buttons: [
             [
               {
-                text: 'Правильный ответ',
+                text: 'Стек',
                 action: 'checkAnswer',
-                argument: '1'
+                argument: '0'
               },
               {
-                text: '2',
+                text: 'Не знаю',
                 action: 'checkAnswer',
                 argument: '0'
               }
             ],
             [
               {
-                text: '3',
+                text: 'Хеш-таблица',
                 action: 'checkAnswer',
                 argument: '0'
               },
               {
-                text: '4',
+                text: 'Очередь',
                 action: 'checkAnswer',
-                argument: '0'
+                argument: '1'
               }
             ]
           ]
