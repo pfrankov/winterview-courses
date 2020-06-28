@@ -133,7 +133,24 @@ const answers: {[index: string]:any} = {
   '4': [
     {
       isCorrect: 'false',
-      text: ``
+      text: `Звучит неплохо, но нет. Такой механизм называется стеком вызовов (call stack) или стеком выполнения. Давайте разбираться на примере, как он работает. У нас есть такой фрагмент кода (да, он простой, чтобы было проще разобраться, подыграйте):
+      
+<pre><code>
+const countPlates = (guests) => { 
+  guests * 2 
+};
+const createDinner = (guests) => { 
+  &#715;Для \${guests} гостей
+  надо приготовить 
+  \${countPlates(guests)} тарелок&#715; 
+};
+      
+console.log(createDinner(7)); 
+// Выведет: Для 7 гостей 
+надо приготовить 
+14 тарелок</code></pre>
+      
+      `
     },
     {
       isCorrect: 'true',
