@@ -289,24 +289,24 @@ export default {
               {
                 text: 'Стек',
                 action: 'checkAnswer',
-                argument: '0'
+                argument: '1/0'
               },
               {
                 text: 'Очередь',
                 action: 'checkAnswer',
-                argument: '1'
+                argument: '1/1'
               }
             ],
             [
               {
                 text: 'Дерево',
                 action: 'checkAnswer',
-                argument: '2'
+                argument: '1/2'
               },
               {
                 text: 'Не знаю',
                 action: 'checkAnswer',
-                argument: '3'
+                argument: '1/3'
               }
             ]
           ]
@@ -327,24 +327,24 @@ export default {
               {
                 text: 'pop',
                 action: 'checkAnswer',
-                argument: '0'
+                argument: '2/0'
               },
               {
                 text: 'push',
                 action: 'checkAnswer',
-                argument: '1'
+                argument: '2/1'
               }
             ],
             [
               {
                 text: 'unshift',
                 action: 'checkAnswer',
-                argument: '2'
+                argument: '2/2'
               },
               {
                 text: 'не знаю',
                 action: 'checkAnswer',
-                argument: '3'
+                argument: '2/3'
               }
             ]
           ]
@@ -365,24 +365,24 @@ export default {
               {
                 text:'pop',
                 action: 'checkAnswer',
-                argument: '0'
+                argument: '3/0'
               },
               {
                 text: 'push',
                 action: 'checkAnswer',
-                argument: '1'
+                argument: '3/1'
               }
             ],
             [
               {
                 text: 'shift',
                 action: 'checkAnswer',
-                argument: '2'
+                argument: '3/2'
               },
               {
                 text: 'не знаю',
                 action: 'checkAnswer',
-                argument: '3'
+                argument: '3/3'
               }
             ]
           ]
@@ -405,24 +405,24 @@ ____ вызовов — механизм, который помогает инт
               {
                 text: 'Очередь',
                 action: 'checkAnswer',
-                argument: '0'
+                argument: '4/0'
               },
               {
                 text: 'Стек',
                 action: 'checkAnswer',
-                argument: '1'
+                argument: '4/1'
               }
             ],
             [
               {
                 text: 'Переадресация',
                 action: 'checkAnswer',
-                argument: '2'
+                argument: '4/2'
               },
               {
                 text: 'Не знаю',
                 action: 'checkAnswer',
-                argument: '3'
+                argument: '4/3'
               }
             ]
           ]
@@ -443,24 +443,24 @@ ____ вызовов — механизм, который помогает инт
               {
                 text: 'Стек',
                 action: 'checkAnswer',
-                argument: '0'
+                argument: '5/0'
               },
               {
                 text: 'Не знаю',
                 action: 'checkAnswer',
-                argument: '1'
+                argument: '5/1'
               }
             ],
             [
               {
                 text: 'Хеш-таблица',
                 action: 'checkAnswer',
-                argument: '2'
+                argument: '5/2'
               },
               {
                 text: 'Очередь',
                 action: 'checkAnswer',
-                argument: '3'
+                argument: '5/3'
               }
             ]
           ]
@@ -481,24 +481,24 @@ ____ вызовов — механизм, который помогает инт
               {
                 text: 'pop',
                 action: 'checkAnswer',
-                argument: '0'
+                argument: '6/0'
               },
               {
                 text: 'unshift',
                 action: 'checkAnswer',
-                argument: '1'
+                argument: '6/1'
               }
             ],
             [
               {
                 text: 'push',
                 action: 'checkAnswer',
-                argument: '2'
+                argument: '6/2'
               },
               {
                 text: 'не знаю',
                 action: 'checkAnswer',
-                argument: '3'
+                argument: '6/3'
               }
             ]
           ]
@@ -519,24 +519,24 @@ ____ вызовов — механизм, который помогает инт
               {
                 text: 'pop',
                 action: 'checkAnswer',
-                argument: '0'
+                argument: '7/0'
               },
               {
                 text: 'push',
                 action: 'checkAnswer',
-                argument: '1'
+                argument: '7/1'
               }
             ],
             [
               {
                 text: 'shift',
                 action: 'checkAnswer',
-                argument: '2'
+                argument: '7/2'
               },
               {
                 text: 'не знаю',
                 action: 'checkAnswer',
-                argument: '3'
+                argument: '7/3'
               }
             ]
           ]
@@ -548,7 +548,15 @@ ____ вызовов — механизм, который помогает инт
 
   actions: {
     checkAnswer: async ({ setState, state, edit, argument, send }) => {
-      const answer = getAnswer(state.day, argument);
+      if (typeof argument === 'undefined') {
+        argument = '1/1';
+      } 
+      
+      const splitedArgument = argument.split('/');
+      const day = splitedArgument[0];
+      const selectedOption = splitedArgument[1];
+
+      const answer = getAnswer(day, selectedOption);
 
       await edit({
         buttons: []
@@ -559,7 +567,7 @@ ____ вызовов — механизм, который помогает инт
       });
 
       await setState({ 
-        day: state.day + 1,
+        day: day,
         answers: [...state.answers, answer.isCorrect]
       });
 
