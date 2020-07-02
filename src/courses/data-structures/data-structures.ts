@@ -6,8 +6,22 @@ const getTaskHeader = (day: number) => {
     `<b>Структуры данных. День ${day}</b>\n`;
 };
 
-const getFinalText = (answers: []) => {
-  console.log(answers);
+const getFinalText = (userAnswers: [], questions: number) => {
+  const correctAnswers = userAnswers.filter((answer) => answer === true);
+  const correctAnswersQuantity = correctAnswers.length;
+  let message;
+  
+  if (correctAnswersQuantity === questions) {
+    message = `Вы правильно ответили на все вопросы! Так держать!`;      
+  } else if (correctAnswersQuantity >= Math.floor(questions / 2)) {
+    message = `Правильных ответов: ${correctAnswersQuantity} из ${questions}. У вас хороший результат!`; 
+  } else {
+    message = `Правильных ответов: ${correctAnswersQuantity} из ${questions}. Не огорчайтесь. Наверняка, вы узнали что-то новое! `
+  }
+
+  return `${message} 
+  
+Если захотите ещё раз проверить свои знания, возвращайтесь! Скоро мы добавим новые задания в курс.`
 }
 
 const answers: {[index: string]:any} = {
@@ -419,7 +433,7 @@ export default {
         await send({
           message: [
             getTaskHeader(-1),
-            getFinalText(state.answers)
+            getFinalText(state.answers, 7)
           ].join('\n')
         });
       }
