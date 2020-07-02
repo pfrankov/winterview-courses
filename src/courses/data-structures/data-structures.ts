@@ -7,7 +7,7 @@ const getTaskHeader = (day: number) => {
 };
 
 const getFinalText = (userAnswers: [], questions: number) => {
-  const correctAnswers = userAnswers.filter((answer) => answer === true);
+  const correctAnswers = userAnswers.filter((answer) => answer);
   const correctAnswersQuantity = correctAnswers.length;
   let message;
 
