@@ -395,9 +395,9 @@ JavaScript выделяет глобальный контекст выполне
 const getAnswer = (day: string, answerId: string | undefined = '') => answers[day][answerId];
 
 export default {
-  id: 'empty',
+  id: 'dataStructures',
   name: 'Структуры данных',
-  active: true, // Не забудьте сменить на true
+  active: false,
   description: () => {
     return [
       '<b>Cтруктуры данных</b>',
@@ -408,18 +408,7 @@ export default {
       '',
       'Курс сделан в формате теста и идёт неделю — каждый день будет приходить новый вопрос. Вам нужно выбрать вариант ответа. Нестрашно, если ошибётесь. В любом случае вы получите подробное объяснение и узнаете правильный ответ.',
       '',
-      'Для патронов доступен весь курс. Если вы не патрон, вам будут доступны задания первых трёх дней.',
-      '',
-      'Погнали!',
-      '',
-      '',
-      'Для начала давайте выясним, что вообще такое эти <b>структуры данных</b>?',
-      '',
-      'По сути это разные способы хранить информацию. И этих способов много. У каждой структуры есть свои особенности — она может быть эффективна в одних случаях и не очень эффективна в других. Задача разработчика — выбрать наиболее подходящую структуру данных для задачи.',
-      '',
-      'Обычно этим занимаются не начинающие разработчики, а ребята с уровнем middle и senior. Но на собеседованиях про структуры данных часто спрашивают и junior-разработчиков. А понимание того, как эффективно можно хранить данные, даст вам +100 очков к карьерному развитию.',
-      '',
-      'Ниже вас уже ждёт первый вопрос по структурам данных. Удачи!'
+      'Для <a href="https://www.patreon.com/winterview?dataStructures">патронов даже на $1 тирах</a> доступен весь курс. Остальным будут доступны задания первых трёх дней.',
     ].join('\n');
   },
   state: {
@@ -442,6 +431,20 @@ export default {
     },
     day1: {
       execute: async ({transition, send}) => {
+        await send({
+          message: [
+            '<b>Cтруктуры данных</b>',
+            '',
+            'Для начала давайте выясним, что вообще такое эти <b>структуры данных</b>?',
+            '',
+            'По сути это разные способы хранить информацию. И этих способов много. У каждой структуры есть свои особенности — она может быть эффективна в одних случаях и не очень эффективна в других. Задача разработчика — выбрать наиболее подходящую структуру данных для задачи.',
+            '',
+            'Обычно этим занимаются не начинающие разработчики, а ребята с уровнем middle и senior. Но на собеседованиях про структуры данных часто спрашивают и junior-разработчиков. А понимание того, как эффективно можно хранить данные, даст вам +100 очков к карьерному развитию.',
+            '',
+            'Ниже вас уже ждёт первый вопрос по структурам данных. Удачи!'
+          ].join('\n'),
+        });
+
         await send({
           message: [
             getTaskHeader(1),
@@ -479,7 +482,7 @@ export default {
     },
     day2: {
       wait: true,
-      execute: async ({transition, setState, send}) => {
+      execute: async ({transition, send}) => {
         await send({
           message: [
             getTaskHeader(2),
@@ -517,7 +520,7 @@ export default {
     },
     day3: {
       wait: true,
-      execute: async ({transition, setState, send}) => {
+      execute: async ({transition, send}) => {
         await send({
           message: [
             getTaskHeader(3),
@@ -555,7 +558,8 @@ export default {
     },
     day4: {
       wait: true,
-      execute: async ({transition, setState, send}) => {
+      paywall: true,
+      execute: async ({transition, send}) => {
         await send({
           message: [
             getTaskHeader(4),
@@ -595,7 +599,7 @@ ____ вызовов — механизм, который помогает инт
     },
     day5: {
       wait: true,
-      execute: async ({transition, setState, send}) => {
+      execute: async ({transition, send}) => {
         await send({
           message: [
             getTaskHeader(5),
@@ -633,7 +637,7 @@ ____ вызовов — механизм, который помогает инт
     },
     day6: {
       wait: true,
-      execute: async ({transition, setState, send}) => {
+      execute: async ({transition, send}) => {
         await send({
           message: [
             getTaskHeader(6),
@@ -723,6 +727,10 @@ ____ вызовов — механизм, который помогает инт
 
       await edit({
         buttons: []
+      });
+
+      await send({
+        message: answer.isCorrect ? '✅' : '❌',
       });
 
       await send({
