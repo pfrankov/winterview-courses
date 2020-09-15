@@ -640,6 +640,120 @@ JavaScript выделяет глобальный контекст выполне
 }</code></pre>
 `
     }
+  ],
+
+  '9': [
+    {
+      isCorrect: false,
+      text: ``
+    },
+    {
+      isCorrect: false,
+      text: ``
+    },
+    {
+      isCorrect: false,
+      text: ``
+    },
+    {
+      isCorrect: false,
+      text: ``
+    }
+  ],
+
+  '10': [
+    {
+      isCorrect: false,
+      text: ``
+    },
+    {
+      isCorrect: false,
+      text: ``
+    },
+    {
+      isCorrect: false,
+      text: ``
+    },
+    {
+      isCorrect: false,
+      text: ``
+    }
+  ],
+
+  '11': [
+    {
+      isCorrect: false,
+      text: ``
+    },
+    {
+      isCorrect: false,
+      text: ``
+    },
+    {
+      isCorrect: false,
+      text: ``
+    },
+    {
+      isCorrect: false,
+      text: ``
+    }
+  ],
+
+  '12': [
+    {
+      isCorrect: false,
+      text: ``
+    },
+    {
+      isCorrect: false,
+      text: ``
+    },
+    {
+      isCorrect: false,
+      text: ``
+    },
+    {
+      isCorrect: false,
+      text: ``
+    }
+  ],
+
+  '13': [
+    {
+      isCorrect: false,
+      text: ``
+    },
+    {
+      isCorrect: false,
+      text: ``
+    },
+    {
+      isCorrect: false,
+      text: ``
+    },
+    {
+      isCorrect: false,
+      text: ``
+    }
+  ],
+
+  '14': [
+    {
+      isCorrect: false,
+      text: ``
+    },
+    {
+      isCorrect: false,
+      text: ``
+    },
+    {
+      isCorrect: false,
+      text: ``
+    },
+    {
+      isCorrect: false,
+      text: ``
+    }
   ]
 };
 
