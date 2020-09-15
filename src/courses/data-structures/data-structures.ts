@@ -1077,6 +1077,44 @@ ____ вызовов — механизм, который помогает инт
         });
         await transition('day11');
       },
+    },
+    day11: {
+      wait: true,
+      execute: async ({transition, setState, send}) => {
+        await send({
+          message: [
+            getTaskHeader(11),
+            'А что работает оптимальней при добавлении и удалении новых элементов: массив или список?',
+          ].join('\n'),
+          buttons: [
+            [
+              {
+                text: 'Массив',
+                action: 'checkAnswer',
+                argument: '11/0'
+              },
+              {
+                text: 'Список',
+                action: 'checkAnswer',
+                argument: '11/1'
+              }
+            ],
+            [
+              {
+                text: 'Одинаково',
+                action: 'checkAnswer',
+                argument: '11/2'
+              },
+              {
+                text: 'Не знаю',
+                action: 'checkAnswer',
+                argument: '11/3'
+              }
+            ]
+          ]
+        });
+        await transition('day11');
+      },
     }
   },
 
