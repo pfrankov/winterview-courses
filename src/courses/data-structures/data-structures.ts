@@ -967,7 +967,7 @@ ____ вызовов — механизм, который помогает инт
       execute: async ({transition, setState, send}) => {
         await send({
           message: [
-            getTaskHeader(8),
+            getTaskHeader(9),
             'Пришло время познакомиться с ещё одной структурой данных. Она используется часто, как и стеки с очередями, а может и чаще. Каждый элемент этой структуры содержит информацию о себе и ссылку на следующий элемент этой же структуры. Как думаете, как называется такая структура данных?',
           ].join('\n'),
           buttons: [
@@ -997,7 +997,85 @@ ____ вызовов — механизм, который помогает инт
             ]
           ]
         });
-        await transition('end');
+        await transition('day9');
+      },
+    },
+    day9: {
+      wait: true,
+      execute: async ({transition, setState, send}) => {
+        await send({
+          message: [
+            getTaskHeader(9),
+            'В массиве можно моментально получить значение любого элемента по индексу, в объекте это можно сделать по ключу. А в связном списке так тоже можно?',
+          ].join('\n'),
+          buttons: [
+            [
+              {
+                text: 'Да',
+                action: 'checkAnswer',
+                argument: '9/0'
+              },
+              {
+                text: 'Да, но не так быстро',
+                action: 'checkAnswer',
+                argument: '9/1'
+              }
+            ],
+            [
+              {
+                text: 'Нет',
+                action: 'checkAnswer',
+                argument: '9/2'
+              },
+              {
+                text: 'Чую подхвох',
+                action: 'checkAnswer',
+                argument: '9/3'
+              }
+            ]
+          ]
+        });
+        await transition('day10');
+      },
+    },
+    day10: {
+      wait: true,
+      execute: async ({transition, setState, send}) => {
+        await send({
+          message: [
+            getTaskHeader(10),
+            `Теперь мы знаем, что структуры данных в JS можно реализовать с помощью массивов (стеки и очереди), познакомились со связными списками. А как понять, когда что использовать? Для этого надо знать отличия.
+
+            Как вы думаете, когда памяти выделяется меньше — при создании списка или массива?`,
+          ].join('\n'),
+          buttons: [
+            [
+              {
+                text: 'Списка',
+                action: 'checkAnswer',
+                argument: '10/0'
+              },
+              {
+                text: 'Массива',
+                action: 'checkAnswer',
+                argument: '10/1'
+              }
+            ],
+            [
+              {
+                text: 'Одинаково',
+                action: 'checkAnswer',
+                argument: '10/2'
+              },
+              {
+                text: 'Не знаю',
+                action: 'checkAnswer',
+                argument: '10/3'
+              }
+            ]
+          ]
+        });
+        await transition('day11');
       },
     }
   },
