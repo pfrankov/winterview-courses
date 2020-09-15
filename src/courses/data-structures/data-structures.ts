@@ -1113,7 +1113,131 @@ ____ вызовов — механизм, который помогает инт
             ]
           ]
         });
-        await transition('day11');
+        await transition('day12');
+      },
+    },
+    day12: {
+      wait: true,
+      execute: async ({transition, setState, send}) => {
+        await send({
+          message: [
+            getTaskHeader(12),
+            `Давайте подытожим полученные знания, а затем потренируемся выбирать структуры данных для разных задач.
+
+Объекты и массивы, как кубики конструктора — из них можно собирать разные абстрактные структуры данных: очереди, стеки, связные списки <i>и много чего ещё</i>.
+            
+Массивы — быстрое чтение, медленная вставка и удаление элементов.
+            
+Списки — медленное чтение, быстрая вставка и удаление элементов.
+            
+Теперь потренируемся! 
+            
+Вы пишите приложение для ресторана. Официант принимает заказ через приложение, заказ добавляется в конец очереди, повар берёт первый заказ из очереди и начинает готовить. Что подойдёт больше для реализации приложения — массив или связный список?`,
+          ].join('\n'),
+          buttons: [
+            [
+              {
+                text: 'Массив',
+                action: 'checkAnswer',
+                argument: '12/0'
+              },
+              {
+                text: 'Связный список',
+                action: 'checkAnswer',
+                argument: '12/1'
+              }
+            ],
+            [
+              {
+                text: 'Оба норм',
+                action: 'checkAnswer',
+                argument: '12/2'
+              },
+              {
+                text: 'Не знаю',
+                action: 'checkAnswer',
+                argument: '12/3'
+              }
+            ]
+          ]
+        });
+        await transition('day13');
+      },
+    }, 
+    day13: {
+      wait: true,
+      execute: async ({transition, setState, send}) => {
+        await send({
+          message: [
+            getTaskHeader(13),
+            'Представим, что вы пишите музыкальное приложение. Пользователь видит список песен, расположенный по сложности исполнения. Можно выбрать любую из песен, а приложение поможет сыграть её по нотам. В какой структуре вы бы хранили песни для такого приложения?',
+          ].join('\n'),
+          buttons: [
+            [
+              {
+                text: 'Связный список',
+                action: 'checkAnswer',
+                argument: '13/0'
+              },
+              {
+                text: 'Массив',
+                action: 'checkAnswer',
+                argument: '13/1'
+              }
+            ],
+            [
+              {
+                text: 'Оба норм',
+                action: 'checkAnswer',
+                argument: '13/2'
+              },
+              {
+                text: 'Не знаю',
+                action: 'checkAnswer',
+                argument: '13/3'
+              }
+            ]
+          ]
+        });
+        await transition('day14');
+      },
+    },
+    day14: {
+      wait: true,
+      execute: async ({transition, setState, send}) => {
+        await send({
+          message: [
+            getTaskHeader(14),
+            'Пользователь выбрал мелодию. Приложение будет показывать, как её играть по нотам. В какой структуре вы бы хранили ноты песни?',
+          ].join('\n'),
+          buttons: [
+            [
+              {
+                text: 'Связный список',
+                action: 'checkAnswer',
+                argument: '14/0'
+              },
+              {
+                text: 'Массив',
+                action: 'checkAnswer',
+                argument: '14/1'
+              }
+            ],
+            [
+              {
+                text: 'Оба норм',
+                action: 'checkAnswer',
+                argument: '14/2'
+              },
+              {
+                text: 'Не знаю',
+                action: 'checkAnswer',
+                argument: '14/3'
+              }
+            ]
+          ]
+        });
+        await transition('end');
       },
     }
   },
