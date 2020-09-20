@@ -121,6 +121,7 @@ function getButtons(tasks: string[]) {
 
 export default {
   id: 'jobSelection',
+  order: 5,
   name: 'Поиск работы мечты',
   active: true,
   description: () => {

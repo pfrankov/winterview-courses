@@ -25,6 +25,7 @@ async function go ({ send, forward, transition, setState, state }: IExecuteParam
 
 export default {
   id: 'winterviewPosts',
+  order: 10,
   name: 'Лучшие посты Winterview',
   active: true,
   description: ({history}) => {

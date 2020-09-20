@@ -35,6 +35,7 @@ async function sendSolution({argument, send}: any) {
 
 export default {
     id: 'codingCourse',
+    order: 40,
     name: 'Задачки каждый день',
     active: true,
     description: ({history}) => {
