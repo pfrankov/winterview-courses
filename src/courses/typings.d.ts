@@ -90,6 +90,8 @@ export interface ICourse {
     id: string;
     /* Текст на кнопке в разделе Курсов */
     name: string;
+    /* Порядок в списке курсов. Чем больше — тем выше */
+    order: number;
     /* Показывать ли курс в меню Курсов? */
     active: boolean;
     /* Описание курса */

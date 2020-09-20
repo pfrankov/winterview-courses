@@ -396,6 +396,7 @@ const getAnswer = (day: string, answerId: string | undefined = '') => answers[da
 
 export default {
   id: 'dataStructures',
+  order: 60,
   name: 'Структуры данных',
   active: true,
   description: () => {

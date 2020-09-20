@@ -6,6 +6,7 @@ function getHeader(day: string | number) {
 
 export default {
   id: 'interviewPrep',
+  order: 20,
   name: 'Подготовка к собеседованию',
   active: true,
   description: ({history}) => {
