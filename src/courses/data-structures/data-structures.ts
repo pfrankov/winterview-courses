@@ -79,7 +79,7 @@ const answers: {[index: string]:any} = {
   '2': [
     {
       isCorrect: false,
-      сontent: {
+      content: {
         text: `Не угадали. Метод <code>pop</code> удаляет последний элемент массива и возвращает его значение. Его можно использовать для получения элементов из стека. 
 
 А что с другими вариантами? Метод <code>unshift</code> записывает новые элементы в начало массива, а в стеке обычно новые элементы записываются в конец. Помните, «последний пришёл, первый вышел»? 
@@ -1386,7 +1386,7 @@ export default {
         await send({
           message: [
             getTaskHeader(-1),
-            getFinalText(state.answers, 7)
+            getFinalText(state.answers, 14)
           ].join('\n')
         });
       }
