@@ -89,6 +89,7 @@ async function sendTask({ argument, send }: any) {
 
 export default {
   id: 'arrayMethodsCourse',
+  order: 30,
   name: 'Изучение JS методов массива',
   active: true,
   description: () => {

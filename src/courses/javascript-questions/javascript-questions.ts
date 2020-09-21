@@ -14,7 +14,8 @@ const TOTAL_DAYS = 7;
 
 export default {
     id: 'javascriptQuestions',
-    name: '🎟 Вопросы по JavaScript',
+    order: 50,
+    name: 'Вопросы по JavaScript',
     active: true,
     description: () => {
         return [

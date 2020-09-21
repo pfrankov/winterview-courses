@@ -2,6 +2,7 @@ import {ICourse} from "../typings";
 
 export default {
   id: 'empty',
+  order: 0,
   name: 'Название курса',
   active: false, // Не забудьте сменить на true
   description: () => {
