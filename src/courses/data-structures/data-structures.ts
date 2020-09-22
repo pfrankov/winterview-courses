@@ -21,7 +21,7 @@ const getFinalText = (userAnswers: [], questions: number) => {
 
   return `${message} 
   
-Если захотите ещё раз проверить свои знания, возвращайтесь! Скоро мы добавим новые задания в курс.`
+Если захотите ещё раз проверить свои знания, возвращайтесь!`
 }
 
 const answers: {[index: string]:any} = {
